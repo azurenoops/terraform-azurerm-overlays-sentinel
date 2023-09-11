@@ -10,10 +10,10 @@ This module can be SCCA compliant and can be used in a SCCA compliant Network. E
 
 For more information, please read the [SCCA documentation]().
 
-## Usage
+## Example Usage
 
 ```hcl  
-module "sentinel_rules" {  
+module "mod_sentinel_rules" {  
   source = "azurenoops/overlays-sentinel-rules/azurerm//modules/scheduled-alert-rule"  
   version = "0.1.0"  
   
