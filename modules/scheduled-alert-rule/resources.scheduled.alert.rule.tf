@@ -41,14 +41,18 @@ resource "azurerm_sentinel_alert_rule_scheduled" "rule" {
   dynamic "entity_mapping" {
     for_each = var.entity_mappings
     content {
-      entity_type = entity_mapping.value["entityType"]
+      entity_type = entity_mapping.value["entity_type"]
       dynamic "field_mapping" {
-        for_each = entity_mapping.value["fieldMappings"]
+        for_each = entity_mapping.value["field_mappings"]
         content {
           identifier  = field_mapping.value["identifier"]
-          column_name = field_mapping.value["columnName"]
+          column_name = field_mapping.value["column_name"]          
         }
       }
     }
+  }
+
+  event_grouping {
+    aggregation_method = var.aggregation_method
   }
 }

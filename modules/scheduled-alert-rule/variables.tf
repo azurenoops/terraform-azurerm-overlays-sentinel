@@ -1,6 +1,16 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
+variable "workload_name" {
+  description = "Name of the workload. This will be used to name the resources deployed by this module."
+  type        = string
+}
+
+variable "deploy_environment" {
+  description = "Name of the workload's environnement (dev, test, prod, etc). This will be used to name the resources deployed by this module. default is 'dev'"
+  type        = string
+}
+
 variable "name" {
   description = "The name to assign to the alert rule."
   type        = string
@@ -9,11 +19,6 @@ variable "name" {
 variable "log_analytics_workspace_id" {
   description = "The ID of the Log Analytics workspace in which Azure Sentinel is deployed."
   type        = string
-
-  validation = {
-    condition     = var.log_analytics_workspace_id != null
-    error_message = "Please create a terraform variable named \"log_analytics_workspace_id\" and populate it with the ID of your sentinel or log analytics instance."
-  }
 }
 
 variable "display_name" {
@@ -74,6 +79,12 @@ variable "suppression_enabled" {
   description = "Whether or not the rule should be prevented from running after an alert is generated."
   type        = bool
   default     = false
+}
+
+variable "aggregation_method" {
+  description = "The aggregation method to apply to the query results. One of `Count`, `Maximum`, `Minimum`, `Average`, `Total`, `None`."
+  type        = string
+  default     = "Count"
 }
 
 variable "trigger_operator" {
@@ -149,10 +160,10 @@ variable "group_by_custom_details" {
 variable "entity_mappings" {
   description = "A list of entities or categories that are associated to the data that is being sent to Sentinel."
   type = list(object({
-    entityType = string
-    fieldMappings = list(object({
+    entity_type = string
+    field_mappings = list(object({
       identifier = string
-      columnName = string
+      column_name = string
     }))
   }))
   default = []
