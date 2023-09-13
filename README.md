@@ -2,7 +2,7 @@
 
 [![Changelog](https://img.shields.io/badge/changelog-release-green.svg)](CHANGELOG.md) [![Notice](https://img.shields.io/badge/notice-copyright-yellow.svg)](NOTICE) [![MIT License](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE) [![TF Registry](https://img.shields.io/badge/terraform-registry-blue.svg)](https://registry.terraform.io/modules/azurenoops/overlays-sentinel/azurerm/)
 
-This Overlay terraform module can create Azure Sentinel Rule Alerts, Data Connectors and manage related parameters to be used in a [SCCA compliant Network](https://registry.terraform.io/modules/azurenoops/overlays-management-hub/azurerm/latest).
+This Overlay terraform module contains modules for deploying and managing Azure sentinel supporting features which are used to detect cyber threats to be used in a [SCCA compliant Network](https://registry.terraform.io/modules/azurenoops/overlays-management-hub/azurerm/latest).
 
 For more information, please read the [SCCA documentation](https://docs.microsoft.com/en-us/azure/azure-government/documentation-government-get-started-connect-with-cli).
 
@@ -18,7 +18,7 @@ More details are available in the [CONTRIBUTING.md](./CONTRIBUTING.md#pull-reque
 
 ```hcl  
 module "mod_sentinel_rules" {  
-  source = "azurenoops/overlays-sentinel-rules/azurerm//modules/scheduled-alert-rule"  
+  source = "azurenoops/overlays-sentinel-rules/azurerm//modules/scheduled_alert_rule"  
   version = "0.1.0"  
   
     name = "scheduled-alert-rule"
