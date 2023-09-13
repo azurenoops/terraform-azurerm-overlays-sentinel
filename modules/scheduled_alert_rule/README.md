@@ -14,7 +14,7 @@ For more information, please read the [SCCA documentation](https://docs.microsof
 
 ```hcl  
 module "sentinel_rules" {  
-  source = "azurenoops/overlays-sentinel/azurerm//modules/scheduled-alert-rule"  
+  source = "azurenoops/overlays-sentinel/azurerm//modules/scheduled_alert_rule"  
   version = "~> x.x.x"  
   
     name = "scheduled-alert-rule"

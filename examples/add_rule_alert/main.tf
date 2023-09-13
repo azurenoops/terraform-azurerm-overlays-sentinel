@@ -1,9 +1,9 @@
 
 
 module "mod_sentinel_rules" {
-  #source = "azurenoops/overlays-sentinel/azurerm//modules/scheduled-alert-rule"  
+  #source = "azurenoops/overlays-sentinel/azurerm//modules/scheduled_alert_rule"  
   #version = "x.x.x"  
-  source   = "../../modules/scheduled-alert-rule"
+  source   = "../../modules/scheduled_alert_rule"
   depends_on = [ azurerm_log_analytics_workspace.sentinel_workspace,azurerm_log_analytics_solution.solutions ]
   for_each = var.sentinel_rule_alerts
 
