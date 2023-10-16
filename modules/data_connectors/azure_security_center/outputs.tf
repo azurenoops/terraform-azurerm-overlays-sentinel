@@ -1,11 +1,11 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
-output "sentinel_connector_asc_id" {
-  value = azurerm_sentinel_data_connector_azure_security_center.dataASC.id
+output "data_connector_azure_security_center_id" {
+  value = azurerm_sentinel_data_connector_azure_security_center.data_connector_azure_security_center.id
 }
 
-output "sentinel_connector_asc_name" {
-  value = azurerm_sentinel_data_connector_azure_security_center.dataASC.name
+output "data_connector_azure_security_center_name" {
+  value = azurerm_sentinel_data_connector_azure_security_center.data_connector_azure_security_center.name
 }
   

@@ -1,11 +1,11 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
-output "sentinel_connector_oatp_id" {
-  value = azurerm_sentinel_data_connector_office_atp.dataOATP.id
+output "data_connector_office_atp_id" {
+  value = azurerm_sentinel_data_connector_office_atp.data_connector_office_atp.id
 }
 
-output "sentinel_connector_oatp_name" {
-  value = azurerm_sentinel_data_connector_office_atp.dataOATP.name
+output "data_connector_office_atp_name" {
+  value = azurerm_sentinel_data_connector_office_atp.data_connector_office_atp.name
 }
   

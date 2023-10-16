@@ -17,3 +17,9 @@ variable "enable_discovery_logs" {
   type        = bool
   default     = true
 }
+
+variable "tenant_id" {
+  description = "The ID of the Tenant that this Microsoft Cloud App Security Data Connector connects to."
+  type        = string
+  default     = null
+}

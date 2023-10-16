@@ -1,11 +1,11 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
-output "sentinel_connector_opbi_id" {
-  value = azurerm_sentinel_data_connector_office_power_bi.dataOPBI.id
+output "data_connector_office_power_bi_id" {
+  value = azurerm_sentinel_data_connector_office_power_bi.data_connector_office_power_bi.id
 }
 
-output "sentinel_connector_opbi_name" {
-  value = azurerm_sentinel_data_connector_office_power_bi.dataOPBI.name
+output "data_connector_office_power_bi_name" {
+  value = azurerm_sentinel_data_connector_office_power_bi.data_connector_office_power_bi.name
 }
   

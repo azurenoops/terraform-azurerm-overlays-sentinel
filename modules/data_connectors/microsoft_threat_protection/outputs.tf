@@ -1,11 +1,11 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
-output "sentinel_connector_aad_id" {
-  value = azurerm_sentinel_data_connector_azure_active_directory.dataAAD.id
+output "data_connector_microsoft_threat_protection_id" {
+  value = azurerm_sentinel_data_connector_microsoft_threat_protection.data_connector_microsoft_threat_protection.id
 }
 
-output "sentinel_connector_aad_name" {
-  value = azurerm_sentinel_data_connector_azure_active_directory.dataAAD.name
+output "data_connector_microsoft_threat_protection_name" {
+  value = azurerm_sentinel_data_connector_microsoft_threat_protection.data_connector_microsoft_threat_protection.name
 }
   

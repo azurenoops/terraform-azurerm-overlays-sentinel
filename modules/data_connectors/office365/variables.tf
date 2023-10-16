@@ -23,3 +23,9 @@ variable "enable_teams_connector" {
   type        = bool
   default     = true
 }
+
+variable "tenant_id" {
+  description = "The ID of the Tenant that this Office 365 Data Connector connects to."
+  type        = string
+  default     = null
+}

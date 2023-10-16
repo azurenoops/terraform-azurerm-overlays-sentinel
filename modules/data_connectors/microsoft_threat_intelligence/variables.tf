@@ -11,3 +11,9 @@ variable "microsoft_emerging_threat_feed_lookback_date" {
   type        = string
   default     = "1970-01-01T00:00:00Z"
 }
+
+variable "tenant_id" {
+  description = "The ID of the tenant that this Microsoft Defender Advanced Threat Protection Data Connector connects to."
+  type        = string
+  default     = null
+}

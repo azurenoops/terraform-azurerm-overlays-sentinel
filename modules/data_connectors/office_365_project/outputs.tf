@@ -1,11 +1,11 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
-output "sentinel_connector_o365sp_id" {
-  value = azurerm_sentinel_data_connector_office_365_project.dataO365P.id
+output "data_connector_office_365_project_id" {
+  value = azurerm_sentinel_data_connector_office_365_project.data_connector_office_365_project.id
 }
 
-output "sentinel_connector_o365sp_name" {
-  value = azurerm_sentinel_data_connector_office_365_project.dataO365P.name
+output "data_connector_office_365_project_name" {
+  value = azurerm_sentinel_data_connector_office_365_project.data_connector_office_365_project.name
 }
   
