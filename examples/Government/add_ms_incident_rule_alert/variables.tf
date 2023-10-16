@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
 variable "display_name" {
   description = "The display name of the alert rule."
   type        = string

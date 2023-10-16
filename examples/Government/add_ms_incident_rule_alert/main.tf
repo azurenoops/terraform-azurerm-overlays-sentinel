@@ -1,3 +1,5 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
 
 module "mod_sentinel_ms_security_incident_alert_rule" {
   #source = "azurenoops/overlays-sentinel/azurerm//modules/ms_security_incident_alert_rule"  
