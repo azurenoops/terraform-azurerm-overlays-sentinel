@@ -1,4 +1,5 @@
-
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
 
 module "mod_sentinel_machine_learning_behavior_analytics_alert_rule" {
   #source = "azurenoops/overlays-sentinel/azurerm//modules/machine_learning_behavior_analytics_alert_rule"  
