@@ -12,22 +12,36 @@ If you want to contribute to this repository, please feel free to to contribute 
 
 More details are available in the [CONTRIBUTING.md](./CONTRIBUTING.md#pull-request-process) file.
 
-<!-- ## Rule Alerts
+## Rule Alerts
 
-### Example Usage
+### Microsoft Security Incident Alert Rule Example Usage
 
 ```hcl  
-module "mod_sentinel_rules" {  
-  source = "azurenoops/overlays-sentinel-rules/azurerm//modules/scheduled_alert_rule"  
-  version = "x.x.x"  
+module "sentinel_ms_security_incident_alert_rule" {  
+  source = "azurenoops/overlays-sentinel/azurerm//modules/ms_security_incident_alert_rule"  
+  version = "~> x.x.x"  
   
-    name = "scheduled-alert-rule"
-    description = "Scheduled alert rule"
-    severity = "High"
-    query = "SecurityEvent | where EventID == \"4688\" | where AccountType == \"User\" | where Account =~ \"NT AUTHORITY\\SYSTEM\" | where NewProcessName =~ \"C:\\\\Windows\\\\System32\\\\svchost.exe\" | where CommandLine =~ \"-k netsvcs\" | where NewProcessId == \"4\" | where ParentProcessName =~ \"C:\\\\Windows\\\\System32\\\\services.exe\" | where ParentProcessId == \"552\" | where SubjectLogonId == \"0x3e4\" | where SubjectUserName =~ \"NT AUTHORITY\\\\SYSTEM\" | where S"
-    enabled = true 
+    product_filter             = "Azure Security Center"
+    display_name               = "Create incidents based on all alerts generated in Azure Security Center"
+    severity_filter            = ["High"]
+    alert_rule_template_guid   = "90586451-7ba8-4c1e-9904-7d1b7c3cc4d6"
+    description                = "Create incidents based on Azure Security Center alerts"
 }
-``` -->
+```
+
+### Microsoft Fusion Alert Rule Example Usage
+
+```hcl  
+module "mod_sentinel_fusion_alert_rule" {  
+  source = "azurenoops/overlays-sentinel/azurerm//modules/fusion_alert_rule"  
+  version = "~> x.x.x"  
+  
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.sentinel_workspace.id
+  name                       = var.name
+  alert_rule_template_guid   = "f71aba3d-28fb-450b-b192-4e76a83015c8"
+  enable_rule_alert          = true
+}
+```
 
 ## Data Connectors
 
@@ -45,7 +59,7 @@ This module can also create data connectors for Sentinel. The following data con
 - Microsoft Teams
 - Microsoft Threat Intelligence
 
-### Example Usage
+### Microsoft Azure Active Directory Data Connector Example Usage
 
 ```hcl  
 module "mod_sentinel_connectors_azure_active_directory" {  
