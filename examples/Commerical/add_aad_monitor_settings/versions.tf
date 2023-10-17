@@ -2,7 +2,7 @@
 # Licensed under the MIT License.
 
 provider "azurerm" {
-  environment = "usgovernment"
-  skip_provider_registration = true
+  environment = "public"
+  skip_provider_registration = false
   features {}
 }

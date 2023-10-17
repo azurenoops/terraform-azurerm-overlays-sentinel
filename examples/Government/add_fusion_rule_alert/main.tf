@@ -1,4 +1,5 @@
-
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
 
 module "mod_sentinel_fusion_alert_rule" {
   #source = "azurenoops/overlays-sentinel/azurerm//modules/fusion_alert_rule"  

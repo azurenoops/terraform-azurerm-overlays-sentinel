@@ -38,6 +38,15 @@ resource "azurerm_log_analytics_workspace" "sentinel_workspace" {
   tags                = {}
 }
 
+resource "azurerm_storage_account" "sentinel_storage_account" {
+  name                     = "storagesentinel"
+  resource_group_name      = azurerm_resource_group.sentinel_rg.name
+  location                 = module.mod_azure_region_lookup.location_cli
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+  tags                     = {}
+}
+
 resource "azurerm_log_analytics_solution" "solutions" {
   solution_name         = "SecurityInsights"
   location              = module.mod_azure_region_lookup.location_cli

@@ -1,4 +1,5 @@
-
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
 
 module "mod_sentinel_azure_security_center_connector" {
   #source = "azurenoops/overlays-sentinel/azurerm//modules/data_connectors/azure_security_center"  
