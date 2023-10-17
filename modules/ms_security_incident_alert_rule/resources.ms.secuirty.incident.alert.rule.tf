@@ -6,7 +6,7 @@
 ###########################################################
 
 resource "azurerm_sentinel_alert_rule_ms_security_incident" "sentinel_alert_rule_ms_security_incident" {
-  name                       = "example-ms-security-incident-alert-rule"
+  name                       = format("%s-%s-%s", element(split("/", var.log_analytics_workspace_id), 8),"SecurityInsights",uuid())
   log_analytics_workspace_id = var.log_analytics_workspace_id
   product_filter             = var.product_filter
   display_name               = var.display_name
