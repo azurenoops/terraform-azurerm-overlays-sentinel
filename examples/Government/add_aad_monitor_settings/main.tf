@@ -1,4 +1,5 @@
-
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
 
 module "mod_sentinel_aad_monitor_settings" {
   #source = "azurenoops/overlays-sentinel/azurerm//modules/aad_monitor_settings"  
