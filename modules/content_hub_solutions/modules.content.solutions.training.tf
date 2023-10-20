@@ -3,7 +3,7 @@
 
 
 # Enable Sentinel KQL Training Solution
-module "mod_deploy_kql_training" {
+module "mod_kql_training" {
   source  = "azurenoops/overlays-arm-deployment/azurerm//modules/azure_arm_deployment/resource_group"
   version = "~> 1.0"
   count   = var.enable_solution_kql_training ? 1 : 0
@@ -23,7 +23,7 @@ module "mod_deploy_kql_training" {
 }
 
 # Enable Sentinel Training Lab Solution
-module "mod_deploy_training_lab" {
+module "mod_training_lab" {
   source  = "azurenoops/overlays-arm-deployment/azurerm//modules/azure_arm_deployment/resource_group"
   version = "~> 1.0"
   count   = var.enable_solution_training_lab ? 1 : 0

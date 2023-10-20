@@ -5,7 +5,7 @@
 # Licensed under the MIT License.
 
 # Enable Sentinel SOAR Essentials Solution 
-module "mod_deploy_soar_essentials" {
+module "mod_soar_essentials" {
   source  = "azurenoops/overlays-arm-deployment/azurerm//modules/azure_arm_deployment/resource_group"
   version = "~> 1.0"
   count   = var.enable_solution_soar_essentials ? 1 : 0
@@ -25,7 +25,7 @@ module "mod_deploy_soar_essentials" {
 }
 
 # Enable Sentinel UEBA Essentials Solution
-module "mod_deploy_ueba_essentials" {
+module "mod_ueba_essentials" {
   source  = "azurenoops/overlays-arm-deployment/azurerm//modules/azure_arm_deployment/resource_group"
   version = "~> 1.0"
   count   = var.enable_solution_ueba_essentials ? 1 : 0
@@ -45,7 +45,7 @@ module "mod_deploy_ueba_essentials" {
 }
 
 # Enable Sentinel Attacker Tools Threat Protection Essentials Solution
-module "mod_deploy_attacker_tools_threat_protection_essentials" {
+module "mod_attacker_tools_tp_essentials" {
   source  = "azurenoops/overlays-arm-deployment/azurerm//modules/azure_arm_deployment/resource_group"
   version = "~> 1.0"
   count   = var.enable_solution_attacker_tools_threat_protection_essentials ? 1 : 0
@@ -65,7 +65,7 @@ module "mod_deploy_attacker_tools_threat_protection_essentials" {
 }
 
 # Enable Sentinel Cloud Identity Threat Protection Essentials Solution
-module "mod_deploy_cloud_identity_threat_protection_essentials" {
+module "mod_cloud_identity_tp_essentials" {
   source  = "azurenoops/overlays-arm-deployment/azurerm//modules/azure_arm_deployment/resource_group"
   version = "~> 1.0"
   count   = var.enable_solution_cloud_identity_threat_protection_essentials ? 1 : 0
@@ -85,7 +85,7 @@ module "mod_deploy_cloud_identity_threat_protection_essentials" {
 }
 
 # Enable Sentinel Cloud Service Threat Protection Essentials Solution
-module "mod_deploy_cloud_service_threat_protection_essentials" {
+module "mod_cloud_service_tp_essentials" {
   source  = "azurenoops/overlays-arm-deployment/azurerm//modules/azure_arm_deployment/resource_group"
   version = "~> 1.0"
   count   = var.enable_solution_cloud_service_threat_protection_essentials ? 1 : 0
@@ -105,7 +105,7 @@ module "mod_deploy_cloud_service_threat_protection_essentials" {
 }
 
 # Enable Sentinel Endpoint Threat Protection Essentials Solution
-module "mod_deploy_endpoint_threat_protection_essentials" {
+module "mod_endpoint_tp_essentials" {
   source  = "azurenoops/overlays-arm-deployment/azurerm//modules/azure_arm_deployment/resource_group"
   version = "~> 1.0"
   count   = var.enable_solution_endpoint_threat_protection_essentials ? 1 : 0
@@ -125,7 +125,7 @@ module "mod_deploy_endpoint_threat_protection_essentials" {
 }
 
 # Enable Sentinel Network Session Essentials Solution
-module "mod_deploy_network_session_essentials" {
+module "mod_network_session_essentials" {
   source  = "azurenoops/overlays-arm-deployment/azurerm//modules/azure_arm_deployment/resource_group"
   version = "~> 1.0"
   count   = var.enable_solution_network_session_essentials ? 1 : 0
@@ -145,7 +145,7 @@ module "mod_deploy_network_session_essentials" {
 }
 
 # Enable Sentinel Network Threat Protection Essentials Solution
-module "mod_deploy_network_threat_protection_essentials" {
+module "mod_network_tp_essentials" {
   source  = "azurenoops/overlays-arm-deployment/azurerm//modules/azure_arm_deployment/resource_group"
   version = "~> 1.0"
   count   = var.enable_solution_network_threat_protection_essentials ? 1 : 0
@@ -165,7 +165,7 @@ module "mod_deploy_network_threat_protection_essentials" {
 }
 
 # Enable Sentinel Network Threat Protection Essentials Solution
-module "mod_deploy_security_threat_essentials" {
+module "mod_security_threat_essentials" {
   source  = "azurenoops/overlays-arm-deployment/azurerm//modules/azure_arm_deployment/resource_group"
   version = "~> 1.0"
   count   = var.enable_solution_security_threat_essentials ? 1 : 0

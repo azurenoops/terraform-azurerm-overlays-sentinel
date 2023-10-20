@@ -2,7 +2,7 @@
 # Licensed under the MIT License.
 
 # Enable Azure Active Directory Solution in Sentinel 
-module "mod_deploy_azure_ad" {
+module "mod_azure_ad" {
   source  = "azurenoops/overlays-arm-deployment/azurerm//modules/azure_arm_deployment/resource_group"
   version = "~> 1.0"
   count   = var.enable_solution_azure_ad ? 1 : 0
@@ -22,7 +22,7 @@ module "mod_deploy_azure_ad" {
 }
 
 # Enable Azure Active Directory Solution in Sentinel 
-module "mod_deploy_azure_activity" {
+module "mod_azure_activity" {
   source  = "azurenoops/overlays-arm-deployment/azurerm//modules/azure_arm_deployment/resource_group"
   version = "~> 1.0"
   count   = var.enable_solution_azure_activity ? 1 : 0
@@ -42,7 +42,7 @@ module "mod_deploy_azure_activity" {
 }
 
 # Enable Microsoft 365 Solution in Sentinel 
-module "mod_deploy_microsoft_365" {
+module "mod_microsoft_365" {
   source  = "azurenoops/overlays-arm-deployment/azurerm//modules/azure_arm_deployment/resource_group"
   version = "~> 1.0"
   count   = var.enable_solution_microsoft_365 ? 1 : 0
@@ -62,7 +62,7 @@ module "mod_deploy_microsoft_365" {
 }
 
 # Enable Microsoft Teams Solution in Sentinel 
-module "mod_deploy_teams" {
+module "mod_teams" {
   source  = "azurenoops/overlays-arm-deployment/azurerm//modules/azure_arm_deployment/resource_group"
   version = "~> 1.0"
   count   = var.enable_solution_microsoft_teams ? 1 : 0
@@ -82,7 +82,7 @@ module "mod_deploy_teams" {
 }
 
 # Enable Microsoft Defender For Cloud Solution in Sentinel 
-module "mod_deploy_microsoft_defender_for_cloud" {
+module "mod_microsoft_defender_for_cloud" {
   source  = "azurenoops/overlays-arm-deployment/azurerm//modules/azure_arm_deployment/resource_group"
   version = "~> 1.0"
   count   = var.enable_solution_microsoft_defender_for_cloud ? 1 : 0
@@ -102,7 +102,7 @@ module "mod_deploy_microsoft_defender_for_cloud" {
 }
 
 # Enable Microsoft Defender For Endpoint Solution in Sentinel 
-module "mod_deploy_microsoft_defender_for_endpoint" {
+module "mod_microsoft_defender_for_endpoint" {
   source  = "azurenoops/overlays-arm-deployment/azurerm//modules/azure_arm_deployment/resource_group"
   version = "~> 1.0"
   count   = var.enable_solution_microsoft_defender_for_endpoint ? 1 : 0
@@ -122,7 +122,7 @@ module "mod_deploy_microsoft_defender_for_endpoint" {
 }
 
 # Enable Microsoft Defender For IOT Solution in Sentinel 
-module "mod_deploy_microsoft_defender_for_iot" {
+module "mod_microsoft_defender_for_iot" {
   source  = "azurenoops/overlays-arm-deployment/azurerm//modules/azure_arm_deployment/resource_group"
   version = "~> 1.0"
   count   = var.enable_solution_microsoft_defender_for_iot ? 1 : 0
@@ -142,7 +142,7 @@ module "mod_deploy_microsoft_defender_for_iot" {
 }
 
 # Enable Microsoft Dynamics Solution in Sentinel 
-module "mod_deploy_microsoft_dynamics_365" {
+module "mod_microsoft_dynamics_365" {
   source  = "azurenoops/overlays-arm-deployment/azurerm//modules/azure_arm_deployment/resource_group"
   version = "~> 1.0"
   count   = var.enable_solution_microsoft_dynamics_365 ? 1 : 0
@@ -162,7 +162,7 @@ module "mod_deploy_microsoft_dynamics_365" {
 }
 
 # Enable Office Insider Risk Management Solution in Sentinel 
-module "mod_deploy_office_insider_risk_management" {
+module "mod_office_insider_risk_management" {
   source  = "azurenoops/overlays-arm-deployment/azurerm//modules/azure_arm_deployment/resource_group"
   version = "~> 1.0"
   count   = var.enable_solution_office_insider_risk_management ? 1 : 0
@@ -182,7 +182,7 @@ module "mod_deploy_office_insider_risk_management" {
 }
 
 # Enable Office 365 Project Solution in Sentinel 
-module "mod_deploy_office_365_project" {
+module "mod_office_365_project" {
   source  = "azurenoops/overlays-arm-deployment/azurerm//modules/azure_arm_deployment/resource_group"
   version = "~> 1.0"
   count   = var.enable_solution_office_365_project ? 1 : 0
@@ -202,7 +202,7 @@ module "mod_deploy_office_365_project" {
 }
 
 # Enable Office 365 Power BI Solution in Sentinel 
-module "mod_deploy_office_365_powerbi" {
+module "mod_office_365_powerbi" {
   source  = "azurenoops/overlays-arm-deployment/azurerm//modules/azure_arm_deployment/resource_group"
   version = "~> 1.0"
   count   = var.enable_solution_office_365_powerbi ? 1 : 0
