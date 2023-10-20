@@ -11,33 +11,63 @@ variable "deploy_environment" {
   type        = string
 }
 
-variable "name" {
-  description = "The name to assign to the alert rule."
-  type        = string
-}
-
 variable "log_analytics_workspace_id" {
   description = "The ID of the Log Analytics workspace in which Azure Sentinel is deployed."
   type        = string
 }
 
-variable "file_path" {
-  description = "The file path to the automation rule."
-  type        = string
-  default     = ""
+variable "tenant_id" {
+  description = "The ID of the tenant in which Azure Sentinel is deployed."
+  type        = string  
 }
 
-variable "resource_group_name" {
-  description = "The name of the resource group in which the playbook is provisioned."
+variable "display_name" {
+  type = string
+}
+
+variable "unique_prefix" {
+  description = "Unique string used to generate a UUID."
   type        = string
 }
 
-variable "unique_name_prefix" {
-  description = "A unique string prepended to the resource name to ensure it is globally unique (i.e. your company name)."
-  type        = string
+# The default condition is when Status = Active
+variable "conditions" {
+  default = []
+
+  type = list(object({
+    operator = string
+    property = string
+    values   = list(string)
+  }))
 }
 
-variable "environment" {
-  description = "The type of environment (e.g. `dev`, `stage`, or `prod`)."
+variable "log_analytics_workspace_id" {
+  type = string
+}
+
+variable "logic_app_id" {
+  type = string
+}
+
+variable "rule_order" {
+  description = "The order of this Sentinel Automation Rule"
+  type        = number
+  default     = 1
+}
+
+variable "action_order" {
+  description = "The execution order of this action"
+  type        = number
+  default     = 1
+}
+
+variable "enabled" {
+  type    = bool
+  default = false
+}
+
+variable "expiration" {
+  description = "The UTC time in RFC3339 format"
   type        = string
+  default     = null
 }
