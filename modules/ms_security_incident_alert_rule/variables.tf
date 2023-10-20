@@ -31,3 +31,9 @@ variable "severity_filter" {
   type        = set(string)
   default     = ["High"]
 }
+
+variable "enable_rule_alert" {
+  description = "Indicates whether the alert rule is enabled."
+  type        = bool
+  default     = true
+}
