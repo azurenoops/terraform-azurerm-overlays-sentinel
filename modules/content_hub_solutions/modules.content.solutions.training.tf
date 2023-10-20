@@ -2,22 +2,42 @@
 # Licensed under the MIT License.
 
 
-# Enable Microsoft 365 Solution in Sentinel 
-/* module "mod_deploy_microsoft_365" {
+# Enable Sentinel KQL Training Solution
+module "mod_deploy_kql_training" {
   source  = "azurenoops/overlays-arm-deployment/azurerm//modules/azure_arm_deployment/resource_group"
   version = "~> 1.0"
-  count   = var.enable_solution_microsoft_365 ? 1 : 0
+  count   = var.enable_solution_kql_training ? 1 : 0
 
-  name                = "deploy_microsoft_365_content_solution"
+  name                = "deploy_kql_training_content_solution"
   resource_group_name = var.resource_group_name
   deployment_mode     = var.deployment_mode
   deploy_environment  = var.deploy_environment
   workload_name       = "solutions"
 
-  arm_script = file("${path.module}/sentinel/microsoft_365.json")
+  arm_script = file("${path.module}/sentinel/KQLTraining.json")
 
   parameters_override = {
     "workspaceName" = var.log_analytics_workspace_name,
     "location"      = var.location
   }
-} */
+}
+
+# Enable Sentinel Training Lab Solution
+module "mod_deploy_training_lab" {
+  source  = "azurenoops/overlays-arm-deployment/azurerm//modules/azure_arm_deployment/resource_group"
+  version = "~> 1.0"
+  count   = var.enable_solution_training_lab ? 1 : 0
+
+  name                = "deploy_training_lab_content_solution"
+  resource_group_name = var.resource_group_name
+  deployment_mode     = var.deployment_mode
+  deploy_environment  = var.deploy_environment
+  workload_name       = "solutions"
+
+  arm_script = file("${path.module}/sentinel/training_lab.json")
+
+  parameters_override = {
+    "workspaceName" = var.log_analytics_workspace_name,
+    "location"      = var.location
+  }
+}
