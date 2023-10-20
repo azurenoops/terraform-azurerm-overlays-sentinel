@@ -72,3 +72,15 @@ variable "enable_solution_office_365_powerbi" {
   type        = bool
   default     = false
 }
+
+variable "enable_solution_soc_handbook" {
+  description = "Enable SOC Handbook Solution in Sentinel. Default is false."
+  type        = bool
+  default     = false
+}
+
+variable "enable_solution_soc_process_fx" {
+  description = "Enable SOC Process FX Solution in Sentinel. Default is false."
+  type        = bool
+  default     = false  
+}

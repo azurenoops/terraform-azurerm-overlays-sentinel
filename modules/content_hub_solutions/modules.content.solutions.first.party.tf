@@ -220,3 +220,63 @@ module "mod_office_365_powerbi" {
     "location"      = var.location
   }
 }
+
+# Enable Threat Intelligence Solution in Sentinel
+module "mod_threat_intelligence" {
+  source  = "azurenoops/overlays-arm-deployment/azurerm//modules/azure_arm_deployment/resource_group"
+  version = "~> 1.0"
+  count   = var.enable_solution_threat_intelligence ? 1 : 0
+
+  name                = "deploy_threat_intelligence_solution"
+  resource_group_name = var.resource_group_name
+  deployment_mode     = var.deployment_mode
+  deploy_environment  = var.deploy_environment
+  workload_name       = "solutions"
+
+  arm_script = file("${path.module}/sentinel/threat_intelligence.json")
+
+  parameters_override = {
+    "workspaceName" = var.log_analytics_workspace_name,
+    "location"      = var.location
+  }
+}
+
+# Enable SOC Handbook Solution in Sentinel
+module "mod_soc_handbook" {
+  source  = "azurenoops/overlays-arm-deployment/azurerm//modules/azure_arm_deployment/resource_group"
+  version = "~> 1.0"
+  count   = var.enable_solution_soc_handbook ? 1 : 0
+
+  name                = "deploy_soc_handbook_solution"
+  resource_group_name = var.resource_group_name
+  deployment_mode     = var.deployment_mode
+  deploy_environment  = var.deploy_environment
+  workload_name       = "solutions"
+
+  arm_script = file("${path.module}/sentinel/SOCHandbook.json")
+
+  parameters_override = {
+    "workspaceName" = var.log_analytics_workspace_name,
+    "location"      = var.location
+  }
+}
+
+# Enable SOC Handbook Solution in Sentinel
+module "mod_soc_process_fx" {
+  source  = "azurenoops/overlays-arm-deployment/azurerm//modules/azure_arm_deployment/resource_group"
+  version = "~> 1.0"
+  count   = var.enable_solution_soc_process_fx ? 1 : 0
+
+  name                = "deploy_soc_process_fx_solution"
+  resource_group_name = var.resource_group_name
+  deployment_mode     = var.deployment_mode
+  deploy_environment  = var.deploy_environment
+  workload_name       = "solutions"
+
+  arm_script = file("${path.module}/sentinel/SOCProcessFramework.json")
+
+  parameters_override = {
+    "workspaceName" = var.log_analytics_workspace_name,
+    "location"      = var.location
+  }
+}
