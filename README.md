@@ -4,6 +4,8 @@
 
 This Overlay terraform module contains modules for deploying and managing Azure Sentinel components supporting features which are used to detect cyber threats to be used in a [SCCA compliant Network](https://registry.terraform.io/modules/azurenoops/overlays-management-hub/azurerm/latest).
 
+## SCCA Compliance
+
 For more information, please read the [SCCA documentation](https://docs.microsoft.com/en-us/azure/azure-government/documentation-government-get-started-connect-with-cli).
 
 ## Contributing
@@ -47,17 +49,21 @@ module "mod_sentinel_fusion_alert_rule" {
 
 This module can also create data connectors for Sentinel. The following data connectors are available:
 
-- Azure Active Directory
-- Azure Advanced Threat Protection
-- Azure Information Protection
-- Azure Security Center
-- Microsoft Cloud App Security
-- Microsoft Defender Advanced Threat Protection
-- Microsoft Dynamics 365
-- Microsoft Office 365
-- Microsoft Power BI
-- Microsoft Teams
-- Microsoft Threat Intelligence
+The following table summarizes permissions, licenses and permissions needed and related cost to enable each Data Connector:
+
+| Data Connector                                 | License         |  Permissions                    | Cost      |
+| ---------------------------------------------- | --------------- |---------------------------------|-----------|
+| Azure Active Directory Identity Protection  | AAD Premium 2   | Global Admin or Security Admin  | Free      |
+| Azure Activity                                 | None            | Subscription Reader             | Free      |
+| Microsoft 365 Defender                         | M365D license   | Global Admin or Security Admin  | Free      |
+| Microsoft Defender for Cloud                   | MDC license     | Security Reader                 | Free      |
+| Microsoft Insider Risk Management              | IRM license     | Global Admin or Security Admin  | Free      |
+| Office 365                                     | None            | Global Admin or Security Admin  | Free      |
+| Azure Active Directory (Tenant scope version only) | Any AAD license | Global Admin or Security Admin  | Billed    |
+| Dynamics 365                                   | D365 license    | Global Admin or Security Admin  | Billed    |
+| Microsoft PowerBi                              | PowerBi license | Global Admin or Security Admin  | Billed    |
+| Microsoft Project                              | MS Project license | Global Admin or Security Admin | Billed  |
+| Threat Intelligence Platforms                  | None            | Global Admin or Security Admin  | Billed    |
 
 ### Microsoft Azure Active Directory Data Connector Example Usage
 
