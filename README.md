@@ -100,3 +100,20 @@ module "mod_sentinel_aad_monitor_settings" {
 
 }
 ```
+
+## Content Hub Solutions
+
+## Azure Active Direcotry Content Hub Solution Example Usage
+
+```hcl  
+module "mod_sentinel_content_hub_solutions" {
+  source = "azurenoops/overlays-sentinel/azurerm//modules/content_hub_solutions"  
+  version = "x.x.x"  
+  
+  log_analytics_workspace_name = azurerm_log_analytics_workspace.sentinel_workspace.name
+  location                     = azurerm_log_analytics_workspace.sentinel_workspace.location
+  resource_group_name          = azurerm_resource_group.sentinel_rg.name
+  deploy_environment           = "dev"
+  enable_solution_azure_ad     = true
+}
+```
