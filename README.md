@@ -4,6 +4,8 @@
 
 This Overlay terraform module contains modules for deploying and managing Azure Sentinel components supporting features which are used to detect cyber threats to be used in a [SCCA compliant Network](https://registry.terraform.io/modules/azurenoops/overlays-management-hub/azurerm/latest).
 
+## SCCA Compliance
+
 For more information, please read the [SCCA documentation](https://docs.microsoft.com/en-us/azure/azure-government/documentation-government-get-started-connect-with-cli).
 
 ## Contributing
@@ -47,17 +49,19 @@ module "mod_sentinel_fusion_alert_rule" {
 
 This module can also create data connectors for Sentinel. The following data connectors are available:
 
-- Azure Active Directory
-- Azure Advanced Threat Protection
-- Azure Information Protection
-- Azure Security Center
-- Microsoft Cloud App Security
-- Microsoft Defender Advanced Threat Protection
-- Microsoft Dynamics 365
-- Microsoft Office 365
-- Microsoft Power BI
-- Microsoft Teams
-- Microsoft Threat Intelligence
+- Azure Active Directory (Tenant scope version only)
+- Azure Active Directory Identity Protection  
+- Azure Activity
+- Dynamics 365
+- Microsoft 365 Defender
+- Microsoft Defender for Cloud
+- Microsoft Insider Risk Management
+- Microsoft PowerBi
+- Microsoft Project
+- Office 365
+- Threat Intelligence Platforms
+
+To view the full list of permissions needed and related cost to enable each Data Connector, please visit the [Azure Sentinel Data Connectors](https://docs.microsoft.com/en-us/azure/sentinel/connect-data-sources) documentation.
 
 ### Microsoft Azure Active Directory Data Connector Example Usage
 
@@ -92,5 +96,22 @@ module "mod_sentinel_aad_monitor_settings" {
   enable_user_risk_events = true
   enable_risky_events = true
 
+}
+```
+
+## Content Hub Solutions
+
+## Azure Active Direcotry Content Hub Solution Example Usage
+
+```hcl  
+module "mod_sentinel_content_hub_solutions" {
+  source = "azurenoops/overlays-sentinel/azurerm//modules/content_hub_solutions"  
+  version = "x.x.x"  
+  
+  log_analytics_workspace_name = azurerm_log_analytics_workspace.sentinel_workspace.name
+  location                     = azurerm_log_analytics_workspace.sentinel_workspace.location
+  resource_group_name          = azurerm_resource_group.sentinel_rg.name
+  deploy_environment           = "dev"
+  enable_solution_azure_ad     = true
 }
 ```

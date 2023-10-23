@@ -1,0 +1,42 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspaceName": {
+            "type": "string"       
+        },
+        "location": {
+            "type": "string"  
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "name": "MicrosoftDefenderForEndpoint",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2021-04-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "https://catalogartifact.azureedge.net/publicartifacts/azuresentinel.azure-sentinel-solution-microsoftdefenderendpoint-b9a486d7-c89d-416c-85d6-af952bfd363c-microsoftdefenderendpoint/Artifacts/mainTemplate.json",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "workspace": {
+                        "value": "[parameters('workspaceName')]"
+                    },
+                    "location": {
+                        "value": "[parameters('location')]"
+                    },
+                    "workspace-location": {
+                        "value": "[parameters('location')]"
+                    },
+                    "workbook1-name": {
+                        "value": "Microsoft Defender For EndPoint"
+                    }
+                }
+            }
+        }
+    ],
+    "outputs": {}
+}

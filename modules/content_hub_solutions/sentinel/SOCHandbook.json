@@ -1,0 +1,75 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspaceName": {
+            "type": "string"       
+        },
+        "location": {
+            "type": "string"  
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "name": "SOCHandbook",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2021-04-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "https://catalogartifact.azureedge.net/publicartifacts/microsoftsentinelcommunity.azure-sentinel-solution-sochandbook-06470899-c3fe-46ce-9863-f108bf15d790-azure-sentinel-solution-sochandbook/Artifacts/mainTemplate.json",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "workspace": {
+                        "value": "[parameters('workspaceName')]"
+                    },
+                    "location": {
+                        "value": "[parameters('location')]"
+                    },
+                    "workspace-location": {
+                        "value": "[parameters('location')]"
+                    },
+                    "workbook1-name": {
+                        "value": "Analytics Efficiency"
+                    },
+                    "workbook2-name": {
+                        "value": "AnomaliesVisulization"
+                    },
+                    "workbook3-name": {
+                        "value": "AnomalyData"
+                    },
+                    "workbook4-name": {
+                        "value": "Microsoft Sentinel Cost"
+                    },
+                    "workbook5-name": {
+                        "value": "Security Alerts"
+                    },
+                    "workbook6-name": {
+                        "value": "Incident overview"
+                    },
+                    "workbook7-name": {
+                        "value": "IntSights IOC Workbook"
+                    },
+                    "workbook8-name": {
+                        "value": "Investigation Insights"
+                    },
+                    "workbook9-name": {
+                        "value": "MITRE ATT&CK Workbook"
+                    },
+                    "workbook10-name": {
+                        "value": "Security Operations Efficiency"
+                    },
+                    "workbook11-name": {
+                        "value": "Security Status"
+                    },
+                    "workbook12-name": {
+                        "value": "Sentinel Central"
+                    }
+                }
+            }
+        }
+    ],
+    "outputs": {}
+}
