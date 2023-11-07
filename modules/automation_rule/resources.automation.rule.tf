@@ -2,26 +2,39 @@
 # Licensed under the MIT License.
 
 resource "azurerm_sentinel_automation_rule" "automation_rule" {
-  display_name               = var.display_name
-  log_analytics_workspace_id = var.log_analytics_workspace_id
-  name                       = uuidv5("dns", var.unique_prefix)
-  order                      = var.rule_order
-  enabled                    = var.enabled
-  expiration                 = var.expiration
+  for_each                   = var.automation_rules
+  display_name               = try(each.value.display_name, null)
+  log_analytics_workspace_id = try(each.value.log_analytics_workspace_id, null)
 
-  dynamic "condition" {
-    for_each = var.conditions
+  name           = try(each.value.name, null)
+  order          = try(lookup(each.value.order, "order"), 1)
+  condition_json = try(jsonencode(each.value.condition_json), null)
+  enabled        = try(each.value.enabled, false)
+  expiration     = try(each.value.expiration, null)
+  triggers_on    = try(each.value.triggers_on, null)
+  triggers_when  = try(each.value.triggers_when, null)
 
+  dynamic "action_incident" {
+    for_each = each.value.action_incident == null ? [] : each.value.action_incident
     content {
-      operator = condition.value["operator"]
-      property = condition.value["property"]
-      values   = condition.value["values"]
+      order                  = action_incident.value["order"]
+      status                 = action_incident.value["status"]
+      classification         = action_incident.value["classification"]
+      classification_comment = action_incident.value["classification_comment"]
+      labels                 = action_incident.value["labels"]
+      owner_id               = action_incident.value["owner_id"]
+      severity               = action_incident.value["severity"]
     }
   }
 
-  action_playbook {
-    logic_app_id = var.logic_app_id
-    order        = var.action_order
-    tenant_id    = try(var.tenant_id, null)
+  dynamic "action_playbook" {
+    for_each = each.value.action_playbook == null ? [] : each.value.action_playbook
+    content {
+      logic_app_id = action_playbook.value["logic_app_id"]
+      order        = action_playbook.value["order"]
+      tenant_id    = action_playbook.value["tenant_id"]
+    }
   }
 }
+
+

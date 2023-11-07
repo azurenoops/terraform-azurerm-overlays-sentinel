@@ -18,6 +18,10 @@ More details are available in the [CONTRIBUTING.md](./CONTRIBUTING.md#pull-reque
 
 ### Microsoft Security Incident Alert Rule Example Usage
 
+The following example will create a Security Incident Alert Rule which uses an alert rule template to trigger an incident if the query returns any results.
+
+```hcl
+
 ```hcl  
 module "sentinel_ms_security_incident_alert_rule" {  
   source = "azurenoops/overlays-sentinel/azurerm//modules/ms_security_incident_alert_rule"  
@@ -33,6 +37,10 @@ module "sentinel_ms_security_incident_alert_rule" {
 
 ### Microsoft Fusion Alert Rule Example Usage
 
+The following example will create a Fusion Alert Rule which uses an alert rule template to trigger an incident if the query returns any results.
+
+```hcl
+
 ```hcl  
 module "mod_sentinel_fusion_alert_rule" {  
   source = "azurenoops/overlays-sentinel/azurerm//modules/fusion_alert_rule"  
@@ -42,6 +50,108 @@ module "mod_sentinel_fusion_alert_rule" {
   name                       = var.name
   alert_rule_template_guid   = "f71aba3d-28fb-450b-b192-4e76a83015c8"
   enable_rule_alert          = true
+}
+```
+
+### Microsoft Scheduled Alert Rule Example Usage
+
+The following example will create a scheduled alert rule which will run every 5 minutes and will trigger an incident if the query returns any results. The incident will be created for the `SecurityEvent` table and will be grouped by the `Account` column. The incident will be created if the query returns any results and will be closed after 1 hour.
+
+```hcl
+
+module "mod_sentinel_scheduled_alert_rule" {
+  source = "azurenoops/overlays-sentinel/azurerm//modules/scheduled_alert_rule"
+  version = "~> x.x.x"
+
+   scheduled_alert_rules = {
+    "scheduled_alert_rule1" = {
+      display_name               = "Scheduled Alert Rule"
+      log_analytics_workspace_id = "${azurerm_log_analytics_workspace.sentinel_workspace.id}"
+      name                       = "Scheduled Alert Rule"
+      query                      = "SecurityEvent | where EventID == 4625"
+      severity                   = "High"
+      suppression_duration       = "PT1H"
+      suppression_enabled        = true
+      tactics                    = ["Persistence"]
+      techniques                 = ["Valid Accounts"]
+      entity_mapping = [
+        {
+          entity_type = "Account"
+          field_mapping = [
+            {
+              column_name = "Account"
+              identifier  = "Account"
+            }
+          ]
+        }
+      ]
+      event_grouping = [
+        {
+          aggregation_method = "Count"
+        }
+      ]
+      incident_configuration = [
+        {
+          create_incident = true
+          grouping = [
+            {
+              enabled                 = true
+              lookback_duration       = "PT1H"
+              reopen_closed_incidents = true
+              entity_matching_method  = "ByEntities"
+              group_by_entities       = ["Account"]
+              group_by_alert_details  = ["Account"]
+              group_by_custom_details = ["Account"]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
+```
+
+### Microsoft Automation Rule Example Usage
+
+The following example will create an automation rule which will trigger an incident if the query returns any results. The incident will be created for the `SecurityEvent` table and will be grouped by the `Account` column. The incident will be created if the query returns any results and will be closed after 1 hour.
+
+```hcl
+module "mod_sentinel_automation_rule" {
+  source = "azurenoops/overlays-sentinel/azurerm//modules/automation_rule"
+  version = "~> x.x.x"
+
+  automation_rules = {
+    "automation_rule1" = {
+      display_name               = "Automation Rule"
+      log_analytics_workspace_id = "${azurerm_log_analytics_workspace.sentinel_workspace.id}"
+      name                       = uuid()
+      order                      = 1
+      condition_json             = <<CONDITION
+                                    {                                     
+                                      "conditions": [
+                                        {
+                                          "field": "AlertName",
+                                          "equals": "Suspicious activity from a Tor exit node"
+                                        }
+                                      ]
+                                    }
+                                    CONDITION
+      enabled                    = true      
+      triggers_on                = "Incidents"
+      triggers_when              = "Created"      
+      action_incident = [
+        {
+          order                  = 1
+          status                 = "New"
+          classification         = "BenignPositive_SuspiciousButExpected"
+          classification_comment = "Unclassified"
+          labels                 = ["Tor"]
+          owner_id               = "00000000-0000-0000-0000-000000000000"
+          severity               = "Medium"
+        }
+      ]    
+    }
+  }
 }
 ```
 
@@ -61,7 +171,7 @@ This module can also create data connectors for Sentinel. The following data con
 - Office 365
 - Threat Intelligence Platforms
 
-To view the full list of permissions needed and related cost to enable each Data Connector, please visit the [Azure Sentinel Data Connectors](https://docs.microsoft.com/en-us/azure/sentinel/connect-data-sources) documentation.
+To view the full list of permissions needed and related cost to enable each Data Connector, please visit the [Azure Sentinel Data Connectors](https://learn.microsoft.com/en-us/azure/sentinel/billing?tabs=simplified%2Ccommitment-tiers#free-data-sources) documentation.
 
 ### Microsoft Azure Active Directory Data Connector Example Usage
 
@@ -101,7 +211,7 @@ module "mod_sentinel_aad_monitor_settings" {
 
 ## Content Hub Solutions
 
-## Azure Active Direcotry Content Hub Solution Example Usage
+## Azure Active Directory Content Hub Solution Example Usage
 
 ```hcl  
 module "mod_sentinel_content_hub_solutions" {
