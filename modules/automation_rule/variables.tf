@@ -1,73 +1,31 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
-variable "workload_name" {
-  description = "Name of the workload. This will be used to name the resources deployed by this module."
-  type        = string
-}
-
-variable "deploy_environment" {
-  description = "Name of the workload's environnement (dev, test, prod, etc). This will be used to name the resources deployed by this module. default is 'dev'"
-  type        = string
-}
-
-variable "log_analytics_workspace_id" {
-  description = "The ID of the Log Analytics workspace in which Azure Sentinel is deployed."
-  type        = string
-}
-
-variable "tenant_id" {
-  description = "The ID of the tenant in which Azure Sentinel is deployed."
-  type        = string  
-}
-
-variable "display_name" {
-  type = string
-}
-
-variable "unique_prefix" {
-  description = "Unique string used to generate a UUID."
-  type        = string
-}
-
-# The default condition is when Status = Active
-variable "conditions" {
-  default = []
-
-  type = list(object({
-    operator = string
-    property = string
-    values   = list(string)
+variable "automation_rules" {
+  type = map(object({
+    display_name               = string
+    log_analytics_workspace_id = string
+    name                       = string
+    order                      = number
+    condition_json             = optional(string)
+    enabled                    = optional(bool, false)
+    expiration                 = optional(string)
+    triggers_on                = optional(string)
+    triggers_when              = optional(string)
+    action_incident = optional(list(object({
+      order                  = number
+      status                 = optional(string)
+      classification         = optional(string)
+      classification_comment = optional(string)
+      labels                 = optional(list(string))
+      owner_id               = optional(string)
+      severity               = optional(string)
+    })), [])
+    action_playbook = optional(list(object({
+      logic_app_id = optional(string)
+      order        = optional(number)
+      tenant_id    = optional(string)
+    })), [])
   }))
-}
-
-variable "log_analytics_workspace_id" {
-  type = string
-}
-
-variable "logic_app_id" {
-  type = string
-}
-
-variable "rule_order" {
-  description = "The order of this Sentinel Automation Rule"
-  type        = number
-  default     = 1
-}
-
-variable "action_order" {
-  description = "The execution order of this action"
-  type        = number
-  default     = 1
-}
-
-variable "enabled" {
-  type    = bool
-  default = false
-}
-
-variable "expiration" {
-  description = "The UTC time in RFC3339 format"
-  type        = string
-  default     = null
+  default = {}
 }
