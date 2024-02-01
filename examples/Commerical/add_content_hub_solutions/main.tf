@@ -2,7 +2,7 @@
 # Licensed under the MIT License.
 
 module "mod_sentinel_content_hub_solutions" {
-  #source = "azurenoops/overlays-sentinel/azurerm//modules/aad_monitor_settings"  
+  #source = "azurenoops/overlays-sentinel/azurerm//modules/content_hub_solutions"  
   #version = "x.x.x"  
   source     = "../../../modules/content_hub_solutions"
   depends_on = [azurerm_log_analytics_workspace.sentinel_workspace, azurerm_storage_account.sentinel_storage_account, azurerm_log_analytics_solution.solutions]
