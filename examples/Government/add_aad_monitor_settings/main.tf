@@ -7,19 +7,8 @@ module "mod_sentinel_aad_monitor_settings" {
   source     = "../../../modules/aad_monitor_settings"
   depends_on = [azurerm_log_analytics_workspace.sentinel_workspace, azurerm_storage_account.sentinel_storage_account, azurerm_log_analytics_solution.solutions]
 
-  log_analytics_workspace_id = azurerm_log_analytics_workspace.sentinel_workspace.id
-  log_analytics_storage_account_id = azurerm_storage_account.sentinel_storage_account.id
+  log_analytics_workspace_name = azurerm_log_analytics_workspace.sentinel_workspace.name
+  log_analytics_workspace_resource_group_name = azurerm_resource_group.sentinel_rg.name
 
-  enable_sign_in_logs = true
-  enable_audit_logs = true
-  enable_non_interactive_user_sign_in_logs = true
-  enable_service_principal_sign_in_logs = true
-  enable_managed_identity_sign_in_logs = true
-  enable_provisioning_logs = false # Not supported in US Gov
-  enable_adfs_sign_in_logs = true
-  enable_user_risk_events = true
-  enable_risky_events = true
-  enable_network_access_traffic_logs = false # Not supported in US Gov
-  enable_risky_service_principals = true
-  enable_service_principal_risk_events = true
+  data_connector_aad_logs = var.data_connector_aad_logs
 }
