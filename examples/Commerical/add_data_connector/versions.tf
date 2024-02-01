@@ -1,5 +1,5 @@
 provider "azurerm" {
-  environment = "usgovernment"
+  environment = "public"
   skip_provider_registration = true
   features {}
 }
