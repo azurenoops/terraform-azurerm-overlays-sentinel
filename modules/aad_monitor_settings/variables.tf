@@ -1,14 +1,16 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
-variable "log_analytics_workspace_id" {
-  description = "The ID of the Log Analytics workspace in which Azure Sentinel is deployed."
+variable "log_analytics_workspace_name" {
+  description = "Name of the Log Analytics workspace to use for UEBA (User and Entity Behavior Analytics)."
   type        = string
+  default     = "ueba-laws"
 }
 
-variable "log_analytics_storage_account_id" {
-  description = "The ID of the storage account in which Azure Sentinel logs are stored."
+variable "log_analytics_workspace_resource_group_name" {
+  description = "Name of the resource group containing the Log Analytics workspace to use for UEBA (User and Entity Behavior Analytics)."
   type        = string
+  default     = "ueba-rg"
 }
 
 variable "data_connector_aad_logs" {
