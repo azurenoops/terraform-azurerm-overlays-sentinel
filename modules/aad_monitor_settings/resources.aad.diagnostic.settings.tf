@@ -10,7 +10,10 @@ resource "azurerm_monitor_aad_diagnostic_setting" "aad_logs" {
     for_each = toset(var.data_connector_aad_logs)
     content {
       category = enabled_log.key
-      retention_policy {}
+      retention_policy {
+        enabled = true
+        days    = var.retention_policy_days
+      }
     }
   }
 }
