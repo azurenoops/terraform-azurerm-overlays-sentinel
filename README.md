@@ -24,14 +24,24 @@ The following example will create a Security Incident Alert Rule which uses an a
 
 ```hcl  
 module "sentinel_ms_security_incident_alert_rule" {  
-  source = "azurenoops/overlays-sentinel/azurerm//modules/ms_security_incident_alert_rule"  
+  source = "azurenoops/overlays-sentinel/azurerm"  
   version = "~> x.x.x"  
   
-    product_filter             = "Azure Security Center"
-    display_name               = "Create incidents based on all alerts generated in Azure Security Center"
-    severity_filter            = ["High"]
-    alert_rule_template_guid   = "90586451-7ba8-4c1e-9904-7d1b7c3cc4d6"
-    description                = "Create incidents based on Azure Security Center alerts"
+  # Log Analytics Workspace
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.sentinel_workspace.id
+  deploy_environment         = "dev"
+
+  # MS Security Incident Alert Rules
+  ms_security_incident_alert_rules = {
+    "ms_security_incident_alert_rule_1" = {
+      product_filter           = "Azure Security Center"
+      display_name             = "Security Incident"
+      severity_filter          = "High"
+      alert_rule_template_guid = "f71aba3d-28fb-450b-b192-4e76a83015c8"
+      description              = "Security Incident"
+      enabled                  = true
+    }
+  }
 }
 ```
 
@@ -43,13 +53,20 @@ The following example will create a Fusion Alert Rule which uses an alert rule t
 
 ```hcl  
 module "mod_sentinel_fusion_alert_rule" {  
-  source = "azurenoops/overlays-sentinel/azurerm//modules/fusion_alert_rule"  
+  source = "azurenoops/overlays-sentinel/azurerm"  
   version = "~> x.x.x"  
   
+  # Log Analytics Workspace
   log_analytics_workspace_id = azurerm_log_analytics_workspace.sentinel_workspace.id
-  name                       = var.name
-  alert_rule_template_guid   = "f71aba3d-28fb-450b-b192-4e76a83015c8"
-  enable_rule_alert          = true
+  deploy_environment         = "dev"
+
+  # Fusion Alert Rules
+  fusion_alert_rules = {
+    "fusion_alert_rule_1" = {
+      alert_rule_template_guid = "f71aba3d-28fb-450b-b192-4e76a83015c8"
+      enabled        = true
+    }
+  } 
 }
 ```
 
@@ -60,10 +77,14 @@ The following example will create a scheduled alert rule which will run every 5 
 ```hcl
 
 module "mod_sentinel_scheduled_alert_rule" {
-  source = "azurenoops/overlays-sentinel/azurerm//modules/scheduled_alert_rule"
+  source = "azurenoops/overlays-sentinel/azurerm"
   version = "~> x.x.x"
 
-   scheduled_alert_rules = {
+  # Log Analytics Workspace
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.sentinel_workspace.id
+  deploy_environment         = "dev"
+
+  scheduled_alert_rules = {
     "scheduled_alert_rule1" = {
       display_name               = "Scheduled Alert Rule"
       log_analytics_workspace_id = "${azurerm_log_analytics_workspace.sentinel_workspace.id}"
@@ -116,9 +137,31 @@ module "mod_sentinel_scheduled_alert_rule" {
 The following example will create an automation rule which will trigger an incident if the query returns any results. The incident will be created for the `SecurityEvent` table and will be grouped by the `Account` column. The incident will be created if the query returns any results and will be closed after 1 hour.
 
 ```hcl
+# Enable SOAR Essentials for Send Email and Create Incident
+module "mod_sentinel_content_hub_solutions" {
+  source = "azurenoops/overlays-sentinel/azurerm"  
+  version = "x.x.x"  
+  
+  # Required Inputs
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.sentinel_workspace.id
+  deploy_environment         = "dev"
+
+  # Only Required for Conent Hub Solutions
+  log_analytics_workspace_name     = azurerm_log_analytics_workspace.sentinel_workspace.name
+  log_analytics_workspace_location = azurerm_resource_group.sentinel_rg.location
+  resource_group_name              = azurerm_resource_group.sentinel_rg.name
+
+  # Content Hub Solutions
+  enable_solution_soar_essentials = true
+}
+
 module "mod_sentinel_automation_rule" {
-  source = "azurenoops/overlays-sentinel/azurerm//modules/automation_rule"
-  version = "~> x.x.x"
+  source = "azurenoops/overlays-sentinel/azurerm"  
+  version = "x.x.x"  
+  
+  # Log Analytics Workspace
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.sentinel_workspace.id
+  deploy_environment         = "dev"
 
   automation_rules = {
     "automation_rule1" = {
@@ -136,9 +179,9 @@ module "mod_sentinel_automation_rule" {
                                       ]
                                     }
                                     CONDITION
-      enabled                    = true      
+      enabled                    = true
       triggers_on                = "Incidents"
-      triggers_when              = "Created"      
+      triggers_when              = "Created"
       action_incident = [
         {
           order                  = 1
@@ -149,67 +192,110 @@ module "mod_sentinel_automation_rule" {
           owner_id               = "00000000-0000-0000-0000-000000000000"
           severity               = "Medium"
         }
-      ]    
+      ]
     }
   }
 }
+
 ```
 
 ## Data Connectors
 
 This module can also create data connectors for Sentinel. The following data connectors are available:
 
-- Azure Active Directory (Tenant scope version only)
-- Azure Active Directory Identity Protection  
-- Azure Activity
-- Dynamics 365
-- Microsoft 365 Defender
-- Microsoft Defender for Cloud
-- Microsoft Insider Risk Management
-- Microsoft PowerBi
-- Microsoft Project
-- Office 365
-- Threat Intelligence Platforms
+- Azure Active Directory (AzureActiveDirectory)
+- Azure Advanced Threat Protection (AzureAdvancedThreatProtection)
+- Azure Security Center (AzureSecurityCenter)
+- Dynamics 365 (Dynamics365)
+- IoT Hub (IoT)
+- Microsoft Defender Advanced Threat Protection (MicrosoftDefenderAdvancedThreatProtection)
+- Microsoft Cloud App Security (MicrosoftCloudAppSecurity)
+- Office Insider Risk Management (OfficeIRM)
+- Office PowerBi (OfficePowerBI)
+- Microsoft Project (Office365Project)
+- Office Advanced Threat Protection (OfficeATP)
+- Office 365 (Office365)
+- Microsoft Threat Protection (MicrosoftThreatProtection)
+- Threat Intelligence Platforms (MicrosoftThreatIntelligence)
 
 To view the full list of permissions needed and related cost to enable each Data Connector, please visit the [Azure Sentinel Data Connectors](https://learn.microsoft.com/en-us/azure/sentinel/billing?tabs=simplified%2Ccommitment-tiers#free-data-sources) documentation.
+
+> **Note:** It is important to note that each data connector need to be the correct spelling and case sensitive. For example, `AzureActiveDirectory` is the correct spelling and case sensitive.
 
 ### Microsoft Azure Active Directory Data Connector Example Usage
 
 ```hcl  
-module "mod_sentinel_connectors_azure_active_directory" {  
-  source = "azurenoops/overlays-sentinel-rules/azurerm//modules/data_connetors/azure_active_directory"  
+module "mod_sentinel_connectors" {  
+  source = "azurenoops/overlays-sentinel-rules/azurerm"  
   version = "x.x.x"  
-  
-    log_analytics_workspace_id = /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-sentinel/providers/microsoft.operationalinsights/workspaces/la-sentinel
+
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.sentinel_workspace.id
+  deploy_environment         = "dev"
+
+  data_connectors = ["AzureActiveDirectory", "AzureAdvancedThreatProtection"]
 }
 ```
 
-## Azure Active Directory Dianostics Settings
+## Azure Active Directory Diagnostics Settings
+
+Manages an Azure Active Directory Diagnostic Setting for Azure Monitor.
 
 ## Example Usage
 
 ```hcl  
 module "mod_sentinel_aad_monitor_settings" {
-  #source = "azurenoops/overlays-sentinel/azurerm//modules/aad_monitor_settings"  
+  #source = "azurenoops/overlays-sentinel/azurerm"  
   #version = "x.x.x"  
   
   log_analytics_workspace_id = azurerm_log_analytics_workspace.sentinel_workspace.id
-  log_analytics_storage_account_id = azurerm_storage_account.sentinel_storage_account.id
+  deploy_environment         = "dev"
 
-  enable_sign_in_logs = true
-  enable_audit_logs = true
-  enable_non_interactive_user_sign_in_logs = true
-  enable_service_principal_sign_in_logs = true
-  enable_managed_identity_sign_in_logs = true
-  enable_provisioning_logs = true
-  enable_adfs_sign_in_logs = true
-  enable_user_risk_events = true
-  enable_risky_events = true
+  data_connector_aad_enabled = true
+  data_connector_aad_logs    = var.data_connector_aad_logs
+  retention_policy_days      = var.retention_policy_days
 
 }
 ```
 
 ## Content Hub Solutions
+
+The Content Hub Solutions can be enabled by using the `enable_solution_` prefix.
+
+The following Content Hub Solutions are available:
+
+First Party Solutions:
+
+- Azure Active Directory
+- Azure Activity
+- Microsoft 365
+- Microsoft Teams
+- Microsoft Defender For Cloud
+- Microsoft Defender For Endpoint
+- Microsoft Defender For IOT
+- Microsoft Dynamics
+- Office Insider Risk Management
+- Office 365 Project
+- Office 365 Power BI
+- Threat Intelligence
+- SOC Handbook
+- SOC Process Automation
+
+Solutions Essentials: 
+
+- Sentinel SOAR Essentials
+- Sentinel UEBA Essentials
+- Sentinel Attacker Tools Threat Protection Essentials
+- Sentinel Cloud Identity Threat Protection Essential
+- Sentinel Cloud Service Threat Protection Essentials
+- Sentinel Endpoint Threat Protection Essentials
+- Sentinel Network Session Essentials
+- Sentinel Network Threat Protection Essentials
+- Sentinel Security Threat Protection Essentials
+
+Training Solutions:
+
+- Sentinel KQL Training
+- Sentinel Training Lab
 
 ## Azure Active Directory Content Hub Solution Example Usage
 
@@ -218,24 +304,36 @@ module "mod_sentinel_content_hub_solutions" {
   source = "azurenoops/overlays-sentinel/azurerm//modules/content_hub_solutions"  
   version = "x.x.x"  
   
-  log_analytics_workspace_name = azurerm_log_analytics_workspace.sentinel_workspace.name
-  location                     = azurerm_log_analytics_workspace.sentinel_workspace.location
-  resource_group_name          = azurerm_resource_group.sentinel_rg.name
-  deploy_environment           = "dev"
-  enable_solution_azure_ad     = true
+  # Required Inputs
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.sentinel_workspace.id
+  deploy_environment         = "dev"
+
+  # Only Required for Conent Hub Solutions
+  log_analytics_workspace_name     = azurerm_log_analytics_workspace.sentinel_workspace.name
+  log_analytics_workspace_location = azurerm_resource_group.sentinel_rg.location
+  resource_group_name              = azurerm_resource_group.sentinel_rg.name
+
+  # Content Hub Solutions
+  enable_solution_azure_activity = true
 }
 ```
 
 ## UBEA Solutions
+
+The UBEA Solutions can be enabled by using the `enable_ueba` variable.
 
 ```hcl
 module "mod_sentinel_ubea" {
   source = "azurenoops/overlays-sentinel/azurerm//modules/ubea"  
   version = "x.x.x"  
   
-  ueba_data_sources                           = var.ueba_data_sources
-  ueba_entity_providers                       = var.ueba_entity_providers
-  log_analytics_workspace_name                = azurerm_log_analytics_workspace.sentinel_workspace.name
-  log_analytics_workspace_resource_group_name = azurerm_resource_group.sentinel_rg.name
+ # Log Analytics Workspace
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.sentinel_workspace.id
+  deploy_environment         = "dev"
+
+  # UBEA
+  enable_ueba           = true
+  ueba_data_sources     = var.ueba_data_sources
+  ueba_entity_providers = var.ueba_entity_providers
 }
 ```
