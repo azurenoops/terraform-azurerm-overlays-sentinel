@@ -18,7 +18,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "https://catalogartifact.azureedge.net/publicartifacts/azuresentinel.azure-sentinel-solution-networkthreatdetection-3a94a352-ac4d-4a0a-a68d-b35537f3e9e8-azure-sentinel-solution-networkthreatdetection/Artifacts/mainTemplate.json",
+                    "uri": "https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/Solutions/Network%20Threat%20Protection%20Essentials/Package/mainTemplate.json",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {

@@ -12,13 +12,13 @@
     "variables": {},
     "resources": [
         {
-            "name": "AzureAD",
+            "name": "MicrosoftEntraID",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2020-06-01",
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "https://catalogartifact.azureedge.net/publicartifacts/azuresentinel.azure-sentinel-solution-azureactivedirectory-4ce15e62-2d69-4e80-ab66-9acb9ca86a07-azure-sentinel-solution-azureactivedirectory/Artifacts/mainTemplate.json",
+                    "uri": "https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/Solutions/Microsoft%20Entra%20ID/Package/mainTemplate.json",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
@@ -32,10 +32,10 @@
                         "value": "[parameters('location')]"
                     },
                     "workbook1-name": {
-                        "value": "Azure AD Audit logs"
+                        "value": "Microsoft Entra ID Audit logs"
                     },
                     "workbook2-name": {
-                        "value": "Azure AD Sign-in logs"
+                        "value": "Microsoft Entra ID Sign-in logs"
                     }
                 }
             }

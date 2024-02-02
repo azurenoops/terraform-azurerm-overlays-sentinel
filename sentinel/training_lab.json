@@ -3,22 +3,22 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "workspaceName": {
-            "type": "string"       
+            "type": "string"
         },
         "location": {
-            "type": "string"  
+            "type": "string"
         }
     },
     "variables": {},
     "resources": [
-       {
+        {
             "name": "TrainingLab",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2021-04-01",
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "https://catalogartifact.azureedge.net/publicartifacts/azuresentinel.azure-sentinel-solution-azuretraininglab-b058241c-9e79-4825-97e1-b2ad15a6d36e-azure-sentinel-solution-azuretraininglab/Artifacts/mainTemplate.json",
+                    "uri": "https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/Solutions/Training/Azure-Sentinel-Training-Lab/Package/mainTemplate.json",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
@@ -30,6 +30,9 @@
                     },
                     "workspace-location": {
                         "value": "[parameters('location')]"
+                    },
+                    "formattedTimeNow": {
+                        "value": "[utcNow('g')]"
                     },
                     "workbook1-name": {
                         "value": ""

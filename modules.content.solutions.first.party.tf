@@ -1,13 +1,13 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
-# Enable Azure Active Directory Solution in Sentinel 
-module "mod_azure_ad" {
+# Enable Microsoft Entra ID Solution in Sentinel 
+module "mod_microsoft_entra_id" {
   source  = "azurenoops/overlays-arm-deployment/azurerm//modules/azure_arm_deployment/resource_group"
   version = "~> 1.0"
   count   = var.enable_solution_azure_ad ? 1 : 0
 
-  name                = "deploy_azure_ad_content_solution"
+  name                = "deploy_microsoft_entra_id_content_solution"
   resource_group_name = var.resource_group_name
   deployment_mode     = var.deployment_mode
   deploy_environment  = var.deploy_environment
