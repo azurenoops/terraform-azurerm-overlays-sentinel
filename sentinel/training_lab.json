@@ -1,0 +1,45 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspaceName": {
+            "type": "string"       
+        },
+        "location": {
+            "type": "string"  
+        }
+    },
+    "variables": {},
+    "resources": [
+       {
+            "name": "TrainingLab",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2021-04-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "https://catalogartifact.azureedge.net/publicartifacts/azuresentinel.azure-sentinel-solution-azuretraininglab-b058241c-9e79-4825-97e1-b2ad15a6d36e-azure-sentinel-solution-azuretraininglab/Artifacts/mainTemplate.json",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "workspace": {
+                        "value": "[parameters('workspaceName')]"
+                    },
+                    "location": {
+                        "value": "[parameters('location')]"
+                    },
+                    "workspace-location": {
+                        "value": "[parameters('location')]"
+                    },
+                    "workbook1-name": {
+                        "value": ""
+                    },
+                    "playbook1-PlaybookName": {
+                        "value": "Get-GeoFromIpAndTagIncident"
+                    }
+                }
+            }
+        }
+    ],
+    "outputs": {}
+}
