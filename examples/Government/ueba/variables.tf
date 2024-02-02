@@ -1,4 +1,3 @@
-
 variable "ueba_data_sources" {
   description = "List of UEBA (User and Entity Behavior Analytics) data sources."
   type        = list(string)

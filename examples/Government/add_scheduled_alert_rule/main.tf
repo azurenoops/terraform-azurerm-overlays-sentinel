@@ -2,10 +2,14 @@
 # Licensed under the MIT License.
 
 module "mod_sentinel_scheduled_alert_rule" {
-  #source = "azurenoops/overlays-sentinel/azurerm//modules/scheduled_alert_rule"  
+  #source = "azurenoops/overlays-sentinel/azurerm"  
   #version = "x.x.x"  
-  source     = "../../../modules/scheduled_alert_rule"
-  depends_on = [azurerm_log_analytics_workspace.sentinel_workspace, azurerm_log_analytics_solution.solutions]
+  source     = "../../.."
+  depends_on = [azurerm_log_analytics_workspace.sentinel_workspace, azurerm_storage_account.sentinel_storage_account, azurerm_log_analytics_solution.solutions]
+
+  # Log Analytics Workspace
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.sentinel_workspace.id
+  deploy_environment         = "dev"
 
   scheduled_alert_rules = {
     "scheduled_alert_rule1" = {
