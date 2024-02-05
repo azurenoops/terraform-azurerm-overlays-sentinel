@@ -243,8 +243,8 @@ module "mod_sentinel" {
   deploy_environment         = "dev"
 
   data_connector_aad_enabled = true
-  data_connector_aad_logs    = var.data_connector_aad_logs
-  retention_policy_days      = var.retention_policy_days
+  data_connector_aad_logs    = ["AuditLogs", "SignInLogs", "NonInteractiveUserSignInLogs", "ServicePrincipalSignInLogs", "ManagedIdentitySignInLogs","ProvisioningLogs", "ADFSSignInLogs", "RiskyUsers", "UserRiskEvents", "NetworkAccessTrafficLogs", "RiskyServicePrincipals", "ServicePrincipalRiskEvents", "EnrichedOffice365AuditLogs", "MicrosoftGraphActivityLogs"]
+  retention_policy_days      = 30
 
 }
 ```
