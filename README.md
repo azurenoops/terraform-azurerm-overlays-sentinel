@@ -232,6 +232,23 @@ module "mod_sentinel" {
 
 Manages an Azure Active Directory Diagnostic Setting for Azure Monitor.
 
+Defualt Logs included in the Diagnostic Settings are:
+
+- AuditLogs
+- SignInLogs
+- NonInteractiveUserSignInLogs
+- ServicePrincipalSignInLogs
+- ManagedIdentitySignInLogs
+- ProvisioningLogs
+- ADFSSignInLogs
+- RiskyUsers
+- UserRiskEvents
+- NetworkAccessTrafficLogs
+- RiskyServicePrincipals
+- ServicePrincipalRiskEvents
+- EnrichedOffice365AuditLogs
+- MicrosoftGraphActivityLogs
+
 ## Example Usage
 
 ```hcl  
