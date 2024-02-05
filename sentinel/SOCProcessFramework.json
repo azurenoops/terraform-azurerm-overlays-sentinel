@@ -12,13 +12,13 @@
     "variables": {},
     "resources": [
         {
-            "name": "SOCProcessFramework",
+             "name": "SOCProcessFramework",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2021-04-01",
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/Solutions/SOC-Process-Framework/Package/mainTemplate.json",
+                    "uri": "https://catalogartifact.azureedge.net/publicartifacts/azuresentinel.azure-sentinel-solution-socprocessframework-27b81a18-2451-48d3-b048-d6dcff51eea1-azure-sentinel-solution-socprocessframework/Artifacts/mainTemplate.json",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {

@@ -18,7 +18,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/Solutions/MicrosoftDefenderForEndpoint/Package/mainTemplate.json",
+                    "uri": "https://catalogartifact.azureedge.net/publicartifacts/azuresentinel.azure-sentinel-solution-microsoftdefenderendpoint-b9a486d7-c89d-416c-85d6-af952bfd363c-microsoftdefenderendpoint/Artifacts/mainTemplate.json",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {

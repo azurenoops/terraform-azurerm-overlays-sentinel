@@ -18,7 +18,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/Solutions/Teams/Package/mainTemplate.json",
+                    "uri": "https://catalogartifact.azureedge.net/publicartifacts/sentinel4teams.sentinelforteams-f4df5439-7b5b-439c-9a5d-e734aa1d26c5-sentinelforteamssolution/Artifacts/mainTemplate.json",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {

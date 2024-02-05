@@ -18,7 +18,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/Solutions/SOC%20Handbook/Package/mainTemplate.json",
+                    "uri": "https://catalogartifact.azureedge.net/publicartifacts/microsoftsentinelcommunity.azure-sentinel-solution-sochandbook-06470899-c3fe-46ce-9863-f108bf15d790-azure-sentinel-solution-sochandbook/Artifacts/mainTemplate.json",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
@@ -41,34 +41,31 @@
                         "value": "AnomalyData"
                     },
                     "workbook4-name": {
-                        "value": "Attack Surface Reduction Dashboard"
-                    },
-                    "workbook5-name": {
                         "value": "Microsoft Sentinel Cost"
                     },
-                    "workbook6-name": {
+                    "workbook5-name": {
                         "value": "Security Alerts"
                     },
-                    "workbook7-name": {
+                    "workbook6-name": {
                         "value": "Incident overview"
                     },
-                    "workbook8-name": {
+                    "workbook7-name": {
                         "value": "IntSights IOC Workbook"
                     },
-                    "workbook9-name": {
+                    "workbook8-name": {
                         "value": "Investigation Insights"
                     },
-                    "workbook10-name": {
+                    "workbook9-name": {
                         "value": "MITRE ATT&CK Workbook"
                     },
-                    "workbook11-name": {
+                    "workbook10-name": {
                         "value": "Security Operations Efficiency"
                     },
-                    "workbook12-name": {
+                    "workbook11-name": {
                         "value": "Security Status"
                     },
-                    "workbook13-name": {
-                        "value": "Microsoft Sentinel Central"
+                    "workbook12-name": {
+                        "value": "Sentinel Central"
                     }
                 }
             }
