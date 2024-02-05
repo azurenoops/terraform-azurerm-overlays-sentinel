@@ -20,8 +20,6 @@ More details are available in the [CONTRIBUTING.md](./CONTRIBUTING.md#pull-reque
 
 The following example will create a Microsoft Security Incident Alert Rule which uses an alert rule template to trigger an incident if the query returns any results.
 
-```hcl
-
 ```hcl  
 module "mod_sentinel" {  
   source = "azurenoops/overlays-sentinel/azurerm"  
