@@ -23,7 +23,7 @@ The following example will create a Security Incident Alert Rule which uses an a
 ```hcl
 
 ```hcl  
-module "sentinel_ms_security_incident_alert_rule" {  
+module "mod_sentinel" {  
   source = "azurenoops/overlays-sentinel/azurerm"  
   version = "~> x.x.x"  
   
@@ -52,7 +52,7 @@ The following example will create a Fusion Alert Rule which uses an alert rule t
 ```hcl
 
 ```hcl  
-module "mod_sentinel_fusion_alert_rule" {  
+module "mod_sentinel" {  
   source = "azurenoops/overlays-sentinel/azurerm"  
   version = "~> x.x.x"  
   
@@ -76,7 +76,7 @@ The following example will create a scheduled alert rule which will run every 5 
 
 ```hcl
 
-module "mod_sentinel_scheduled_alert_rule" {
+module "mod_sentinel" {
   source = "azurenoops/overlays-sentinel/azurerm"
   version = "~> x.x.x"
 
@@ -138,7 +138,7 @@ The following example will create an automation rule which will trigger an incid
 
 ```hcl
 # Enable SOAR Essentials for Send Email and Create Incident
-module "mod_sentinel_content_hub_solutions" {
+module "mod_sentinel" {
   source = "azurenoops/overlays-sentinel/azurerm"  
   version = "x.x.x"  
   
@@ -153,16 +153,8 @@ module "mod_sentinel_content_hub_solutions" {
 
   # Content Hub Solutions
   enable_solution_soar_essentials = true
-}
 
-module "mod_sentinel_automation_rule" {
-  source = "azurenoops/overlays-sentinel/azurerm"  
-  version = "x.x.x"  
-  
-  # Log Analytics Workspace
-  log_analytics_workspace_id = azurerm_log_analytics_workspace.sentinel_workspace.id
-  deploy_environment         = "dev"
-
+  # Automation Rules
   automation_rules = {
     "automation_rule1" = {
       display_name               = "Automation Rule"
@@ -225,7 +217,7 @@ To view the full list of permissions needed and related cost to enable each Data
 ### Microsoft Azure Active Directory Data Connector Example Usage
 
 ```hcl  
-module "mod_sentinel_connectors" {  
+module "mod_sentinel" {  
   source = "azurenoops/overlays-sentinel-rules/azurerm"  
   version = "x.x.x"  
 
@@ -243,7 +235,7 @@ Manages an Azure Active Directory Diagnostic Setting for Azure Monitor.
 ## Example Usage
 
 ```hcl  
-module "mod_sentinel_aad_monitor_settings" {
+module "mod_sentinel" {
   #source = "azurenoops/overlays-sentinel/azurerm"  
   #version = "x.x.x"  
   
@@ -300,7 +292,7 @@ Training Solutions:
 ## Azure Active Directory Content Hub Solution Example Usage
 
 ```hcl  
-module "mod_sentinel_content_hub_solutions" {
+module "mod_sentinel" {
   source = "azurenoops/overlays-sentinel/azurerm//modules/content_hub_solutions"  
   version = "x.x.x"  
   
@@ -323,7 +315,7 @@ module "mod_sentinel_content_hub_solutions" {
 The UBEA Solutions can be enabled by using the `enable_ueba` variable.
 
 ```hcl
-module "mod_sentinel_ubea" {
+module "mod_sentinel" {
   source = "azurenoops/overlays-sentinel/azurerm//modules/ubea"  
   version = "x.x.x"  
   
