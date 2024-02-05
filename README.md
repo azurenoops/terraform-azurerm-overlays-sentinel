@@ -18,7 +18,7 @@ More details are available in the [CONTRIBUTING.md](./CONTRIBUTING.md#pull-reque
 
 ### Microsoft Security Incident Alert Rule Example Usage
 
-The following example will create a Security Incident Alert Rule which uses an alert rule template to trigger an incident if the query returns any results.
+The following example will create a Microsoft Security Incident Alert Rule which uses an alert rule template to trigger an incident if the query returns any results.
 
 ```hcl
 
