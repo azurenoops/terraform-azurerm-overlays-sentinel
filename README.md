@@ -325,7 +325,7 @@ module "mod_sentinel" {
 
   # UBEA
   enable_ueba           = true
-  ueba_data_sources     = var.ueba_data_sources
-  ueba_entity_providers = var.ueba_entity_providers
+  ueba_data_sources     = ["AuditLogs", "AzureActivity", "SecurityEvent", "SigninLogs"]
+  ueba_entity_providers = ["AzureActiveDirectory"]
 }
 ```
