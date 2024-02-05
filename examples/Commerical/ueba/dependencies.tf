@@ -5,7 +5,7 @@ module "mod_azure_region_lookup" {
   source  = "azurenoops/overlays-azregions-lookup/azurerm"
   version = "~> 1.0.0"
 
-  azure_region = "usgovvirginia"
+  azure_region = "eastus"
 }
 
 resource "azurerm_resource_group" "sentinel_rg" {

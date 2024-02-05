@@ -3,21 +3,33 @@
 
 # Enable SOAR Essentials for Send Email and Create Incident
 module "mod_sentinel_content_hub_solutions" {
-  source     = "../../../modules/content_hub_solutions"
+  #source = "azurenoops/overlays-sentinel/azurerm"  
+  #version = "x.x.x"  
+  source     = "../../.."
   depends_on = [azurerm_log_analytics_workspace.sentinel_workspace, azurerm_log_analytics_solution.solutions]
 
-  log_analytics_workspace_name    = azurerm_log_analytics_workspace.sentinel_workspace.name
-  location                        = azurerm_log_analytics_workspace.sentinel_workspace.location
-  resource_group_name             = azurerm_resource_group.sentinel_rg.name
-  deploy_environment              = "dev"
+  # Required Inputs
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.sentinel_workspace.id
+  deploy_environment         = "dev"
+
+  # Only Required for Conent Hub Solutions
+  log_analytics_workspace_name     = azurerm_log_analytics_workspace.sentinel_workspace.name
+  log_analytics_workspace_location = azurerm_resource_group.sentinel_rg.location
+  resource_group_name              = azurerm_resource_group.sentinel_rg.name
+
+  # Content Hub Solutions
   enable_solution_soar_essentials = true
 }
 
 module "mod_sentinel_automation_rule" {
-  #source = "azurenoops/overlays-sentinel/azurerm//modules/automation_rule"  
+  #source = "azurenoops/overlays-sentinel/azurerm"  
   #version = "x.x.x"  
-  source     = "../../../modules/automation_rule"
-  depends_on = [azurerm_log_analytics_workspace.sentinel_workspace, azurerm_log_analytics_solution.solutions, module.mod_sentinel_content_hub_solutions]
+  source     = "../../.."
+  depends_on = [azurerm_log_analytics_workspace.sentinel_workspace, azurerm_storage_account.sentinel_storage_account, azurerm_log_analytics_solution.solutions]
+
+  # Log Analytics Workspace
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.sentinel_workspace.id
+  deploy_environment         = "dev"
 
   automation_rules = {
     "automation_rule1" = {
@@ -35,9 +47,9 @@ module "mod_sentinel_automation_rule" {
                                       ]
                                     }
                                     CONDITION
-      enabled                    = true      
+      enabled                    = true
       triggers_on                = "Incidents"
-      triggers_when              = "Created"      
+      triggers_when              = "Created"
       action_incident = [
         {
           order                  = 1
@@ -48,7 +60,7 @@ module "mod_sentinel_automation_rule" {
           owner_id               = "00000000-0000-0000-0000-000000000000"
           severity               = "Medium"
         }
-      ]    
+      ]
     }
   }
 }
