@@ -314,6 +314,8 @@ module "mod_sentinel" {
 
 The UBEA Solutions can be enabled by using the `enable_ueba` variable.
 
+> **Note:** The UBEA Solutions require the `ueba_data_sources` and `ueba_entity_providers` variables to be set. The `ueba_data_sources` variable is a list of data sources to be used and the `ueba_entity_providers` variable is a list of entity providers to be used.
+
 ```hcl
 module "mod_sentinel" {
   source = "azurenoops/overlays-sentinel/azurerm//modules/ubea"  
