@@ -1,6 +1,26 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
+# Enable Microsoft XDR Solution in Sentinel 
+module "mod_microsoft_xdr_id" {
+  source  = "azurenoops/overlays-arm-deployment/azurerm//modules/azure_arm_deployment/resource_group"
+  version = "~> 1.0"
+  count   = var.enable_solution_microsoft_xdr ? 1 : 0
+
+  name                = "deploy_microsoft_xdr_content_solution"
+  resource_group_name = var.resource_group_name
+  deployment_mode     = var.deployment_mode
+  deploy_environment  = var.deploy_environment
+  workload_name       = "solutions"
+
+  arm_script = file("${path.module}/sentinel/microsoft_xdr.json")
+
+  parameters_override = {
+    "workspace"          = var.log_analytics_workspace_name,
+    "workspace-location" = var.log_analytics_workspace_location
+  }
+}
+
 # Enable Microsoft Entra ID Solution in Sentinel 
 module "mod_microsoft_entra_id" {
   source  = "azurenoops/overlays-arm-deployment/azurerm//modules/azure_arm_deployment/resource_group"
