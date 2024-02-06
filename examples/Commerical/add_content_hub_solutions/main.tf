@@ -17,6 +17,6 @@ module "mod_sentinel_content_hub_solutions" {
   resource_group_name              = azurerm_resource_group.sentinel_rg.name
 
   # Content Hub Solutions
-  enable_solution_azure_activity = true
+  enable_solution_microsoft_xdr = true
 
 }

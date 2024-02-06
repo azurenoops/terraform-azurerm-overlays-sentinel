@@ -1,12 +1,6 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
-variable "enable_ueba" {
-  description = "Indicates whether UEBA (User and Entity Behavior Analytics) is enabled."
-  type        = bool
-  default     = false  
-}
-
 variable "ueba_data_sources" {
   description = "List of UEBA (User and Entity Behavior Analytics) data sources."
   type        = list(string)

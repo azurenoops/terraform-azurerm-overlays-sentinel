@@ -14,6 +14,17 @@ If you want to contribute to this repository, please feel free to to contribute 
 
 More details are available in the [CONTRIBUTING.md](./CONTRIBUTING.md#pull-request-process) file.
 
+## JFHQ-DODIN TASKORD 24-006 Support
+
+This module supports the JFHQ-DODIN TASKORD 24-006 by providing the ability to deploy and manage Azure Sentinel components.
+
+### Required Installed Components
+
+- Azure Monitor MS Entra Id Diagnostic Settings
+- Azure UBEA Solutions
+- Azure Content Hub Solutions (MS XDR)
+- Azure Data Connectors (MS Entra Id, MS XDR)
+
 ## Rule Alerts
 
 ### Microsoft Security Incident Alert Rule Example Usage
