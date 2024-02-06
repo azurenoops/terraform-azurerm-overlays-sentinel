@@ -28,5 +28,5 @@ variable "enable_discovery_logs" {
 variable "data_connectors" {
   description = "(Optional) The list of data connectors to enable for the Azure Security Center Data Connector. Defaults to ['AzureActiveDirectory']."
   type        = list(string)
-  default     = [] 
+  default     = ["AzureActiveDirectory"] 
 }
