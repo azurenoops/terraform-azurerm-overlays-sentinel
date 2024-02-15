@@ -24,7 +24,7 @@ variable "ms_security_incident_alert_rules" {
   type = map(object({    
     product_filter = optional(string)
     display_name = optional(string)
-    severity_filter = optional(string)
+    severity_filter = optional(list(string))
     alert_rule_template_guid = optional(string)
     description = optional(string)
     enabled = optional(bool, false)
