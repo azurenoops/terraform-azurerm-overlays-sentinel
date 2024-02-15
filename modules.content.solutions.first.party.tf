@@ -9,7 +9,7 @@ module "mod_microsoft_xdr_id" {
   count   = var.enable_solution_microsoft_xdr ? 1 : 0
 
   name                = "deploy_microsoft_xdr_content_solution"
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.resource_group_name
   deployment_mode     = var.deployment_mode
   deploy_environment  = var.deploy_environment
   workload_name       = "solutions"
@@ -17,7 +17,7 @@ module "mod_microsoft_xdr_id" {
   arm_script = file("${path.module}/sentinel/microsoft_xdr.json")
 
   parameters_override = {
-    "workspace"          = var.log_analytics_workspace_name,
+    "workspace"          = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.workspace_name,
     "workspace-location" = var.log_analytics_workspace_location
   }
 }
@@ -30,7 +30,7 @@ module "mod_microsoft_entra_id" {
   count   = var.enable_solution_azure_ad ? 1 : 0
 
   name                = "deploy_microsoft_entra_id_content_solution"
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.resource_group_name
   deployment_mode     = var.deployment_mode
   deploy_environment  = var.deploy_environment
   workload_name       = "solutions"
@@ -38,7 +38,7 @@ module "mod_microsoft_entra_id" {
   arm_script = file("${path.module}/sentinel/azuread.json")
 
   parameters_override = {
-    "workspaceName" = var.log_analytics_workspace_name,
+    "workspaceName" = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.workspace_name,
     "location"      = var.log_analytics_workspace_location
   }
 }
@@ -51,7 +51,7 @@ module "mod_azure_activity" {
   count   = var.enable_solution_azure_activity ? 1 : 0
 
   name                = "deploy_azure_activity_content_solution"
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.resource_group_name
   deployment_mode     = var.deployment_mode
   deploy_environment  = var.deploy_environment
   workload_name       = "solutions"
@@ -59,7 +59,7 @@ module "mod_azure_activity" {
   arm_script = file("${path.module}/sentinel/azure_activity.json")
 
   parameters_override = {
-    "workspaceName" = var.log_analytics_workspace_name,
+    "workspaceName" = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.workspace_name,
     "location"      = var.log_analytics_workspace_location
   }
 }
@@ -72,7 +72,7 @@ module "mod_microsoft_365" {
   count   = var.enable_solution_microsoft_365 ? 1 : 0
 
   name                = "deploy_microsoft_365_content_solution"
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.resource_group_name
   deployment_mode     = var.deployment_mode
   deploy_environment  = var.deploy_environment
   workload_name       = "solutions"
@@ -80,7 +80,7 @@ module "mod_microsoft_365" {
   arm_script = file("${path.module}/sentinel/microsoft_365.json")
 
   parameters_override = {
-    "workspaceName" = var.log_analytics_workspace_name,
+    "workspaceName" = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.workspace_name,
     "location"      = var.log_analytics_workspace_location
   }
 }
@@ -93,7 +93,7 @@ module "mod_teams" {
   count   = var.enable_solution_microsoft_teams ? 1 : 0
 
   name                = "deploy_microsoft_teams_content_solution"
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.resource_group_name
   deployment_mode     = var.deployment_mode
   deploy_environment  = var.deploy_environment
   workload_name       = "solutions"
@@ -101,7 +101,7 @@ module "mod_teams" {
   arm_script = file("${path.module}/sentinel/microsoft_teams.json")
 
   parameters_override = {
-    "workspaceName" = var.log_analytics_workspace_name,
+    "workspaceName" = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.workspace_name,
     "location"      = var.log_analytics_workspace_location
   }
 }
@@ -114,7 +114,7 @@ module "mod_microsoft_defender_for_cloud" {
   count   = var.enable_solution_microsoft_defender_for_cloud ? 1 : 0
 
   name                = "deploy_microsoft_defender_for_cloud_solution"
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.resource_group_name
   deployment_mode     = var.deployment_mode
   deploy_environment  = var.deploy_environment
   workload_name       = "solutions"
@@ -122,7 +122,7 @@ module "mod_microsoft_defender_for_cloud" {
   arm_script = file("${path.module}/sentinel/microsoft_defender_for_cloud.json")
 
   parameters_override = {
-    "workspaceName" = var.log_analytics_workspace_name,
+    "workspaceName" = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.workspace_name,
     "location"      = var.log_analytics_workspace_location
   }
 }
@@ -135,7 +135,7 @@ module "mod_microsoft_defender_for_endpoint" {
   count   = var.enable_solution_microsoft_defender_for_endpoint ? 1 : 0
 
   name                = "deploy_microsoft_defender_for_endpoint_solution"
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.resource_group_name
   deployment_mode     = var.deployment_mode
   deploy_environment  = var.deploy_environment
   workload_name       = "solutions"
@@ -143,7 +143,7 @@ module "mod_microsoft_defender_for_endpoint" {
   arm_script = file("${path.module}/sentinel/microsoft_defender_for_endpoint.json")
 
   parameters_override = {
-    "workspaceName" = var.log_analytics_workspace_name,
+    "workspaceName" = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.workspace_name,
     "location"      = var.log_analytics_workspace_location
   }
 }
@@ -156,7 +156,7 @@ module "mod_microsoft_defender_for_iot" {
   count   = var.enable_solution_microsoft_defender_for_iot ? 1 : 0
 
   name                = "deploy_microsoft_defender_for_iot_solution"
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.resource_group_name
   deployment_mode     = var.deployment_mode
   deploy_environment  = var.deploy_environment
   workload_name       = "solutions"
@@ -164,7 +164,7 @@ module "mod_microsoft_defender_for_iot" {
   arm_script = file("${path.module}/sentinel/microsoft_defender_for_iot.json")
 
   parameters_override = {
-    "workspaceName" = var.log_analytics_workspace_name,
+    "workspaceName" = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.workspace_name,
     "location"      = var.log_analytics_workspace_location
   }
 }
@@ -177,7 +177,7 @@ module "mod_microsoft_dynamics_365" {
   count   = var.enable_solution_microsoft_dynamics_365 ? 1 : 0
 
   name                = "deploy_microsoft_dynamics_365_solution"
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.resource_group_name
   deployment_mode     = var.deployment_mode
   deploy_environment  = var.deploy_environment
   workload_name       = "solutions"
@@ -185,7 +185,7 @@ module "mod_microsoft_dynamics_365" {
   arm_script = file("${path.module}/sentinel/microsoft_dynamics_365.json")
 
   parameters_override = {
-    "workspaceName" = var.log_analytics_workspace_name,
+    "workspaceName" = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.workspace_name,
     "location"      = var.log_analytics_workspace_location
   }
 }
@@ -198,7 +198,7 @@ module "mod_office_insider_risk_management" {
   count   = var.enable_solution_office_insider_risk_management ? 1 : 0
 
   name                = "deploy_office_insider_risk_management_solution"
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.resource_group_name
   deployment_mode     = var.deployment_mode
   deploy_environment  = var.deploy_environment
   workload_name       = "solutions"
@@ -206,7 +206,7 @@ module "mod_office_insider_risk_management" {
   arm_script = file("${path.module}/sentinel/office_insider_risk_management.json")
 
   parameters_override = {
-    "workspaceName" = var.log_analytics_workspace_name,
+    "workspaceName" = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.workspace_name,
     "location"      = var.log_analytics_workspace_location
   }
 }
@@ -219,7 +219,7 @@ module "mod_office_365_project" {
   count   = var.enable_solution_office_365_project ? 1 : 0
 
   name                = "deploy_office_365_project_solution"
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.resource_group_name
   deployment_mode     = var.deployment_mode
   deploy_environment  = var.deploy_environment
   workload_name       = "solutions"
@@ -227,7 +227,7 @@ module "mod_office_365_project" {
   arm_script = file("${path.module}/sentinel/office_365_project.json")
 
   parameters_override = {
-    "workspaceName" = var.log_analytics_workspace_name,
+    "workspaceName" = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.workspace_name,
     "location"      = var.log_analytics_workspace_location
   }
 }
@@ -240,7 +240,7 @@ module "mod_office_365_powerbi" {
   count   = var.enable_solution_office_365_powerbi ? 1 : 0
 
   name                = "deploy_office_365_powerbi_solution"
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.resource_group_name
   deployment_mode     = var.deployment_mode
   deploy_environment  = var.deploy_environment
   workload_name       = "solutions"
@@ -248,7 +248,7 @@ module "mod_office_365_powerbi" {
   arm_script = file("${path.module}/sentinel/office_365_powerbi.json")
 
   parameters_override = {
-    "workspaceName" = var.log_analytics_workspace_name,
+    "workspaceName" = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.workspace_name,
     "location"      = var.log_analytics_workspace_location
   }
 }
@@ -261,7 +261,7 @@ module "mod_threat_intelligence" {
   count   = var.enable_solution_threat_intelligence ? 1 : 0
 
   name                = "deploy_threat_intelligence_solution"
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.resource_group_name
   deployment_mode     = var.deployment_mode
   deploy_environment  = var.deploy_environment
   workload_name       = "solutions"
@@ -269,7 +269,7 @@ module "mod_threat_intelligence" {
   arm_script = file("${path.module}/sentinel/threat_intelligence.json")
 
   parameters_override = {
-    "workspaceName" = var.log_analytics_workspace_name,
+    "workspaceName" = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.workspace_name,
     "location"      = var.log_analytics_workspace_location
   }
 }
@@ -282,7 +282,7 @@ module "mod_soc_handbook" {
   count   = var.enable_solution_soc_handbook ? 1 : 0
 
   name                = "deploy_soc_handbook_solution"
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.resource_group_name
   deployment_mode     = var.deployment_mode
   deploy_environment  = var.deploy_environment
   workload_name       = "solutions"
@@ -290,7 +290,7 @@ module "mod_soc_handbook" {
   arm_script = file("${path.module}/sentinel/SOCHandbook.json")
 
   parameters_override = {
-    "workspaceName" = var.log_analytics_workspace_name,
+    "workspaceName" = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.workspace_name,
     "location"      = var.log_analytics_workspace_location
   }
 }
@@ -303,7 +303,7 @@ module "mod_soc_process_fx" {
   count   = var.enable_solution_soc_process_fx ? 1 : 0
 
   name                = "deploy_soc_process_fx_solution"
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.resource_group_name
   deployment_mode     = var.deployment_mode
   deploy_environment  = var.deploy_environment
   workload_name       = "solutions"
@@ -311,7 +311,7 @@ module "mod_soc_process_fx" {
   arm_script = file("${path.module}/sentinel/SOCProcessFramework.json")
 
   parameters_override = {
-    "workspaceName" = var.log_analytics_workspace_name,
+    "workspaceName" = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.workspace_name,
     "location"      = var.log_analytics_workspace_location
   }
 }
