@@ -12,7 +12,7 @@ module "mod_soar_essentials" {
   count   = var.enable_solution_soar_essentials ? 1 : 0
 
   name                = "deploy_soar_essentials_content_solution"
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.resource_group_name
   deployment_mode     = var.deployment_mode
   deploy_environment  = var.deploy_environment
   workload_name       = "solutions"
@@ -20,7 +20,7 @@ module "mod_soar_essentials" {
   arm_script = file("${path.module}/sentinel/soar_essentials.json")
 
   parameters_override = {
-    "workspaceName" = var.log_analytics_workspace_name,
+    "workspaceName" = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.workspace_name,
     "location"      = var.log_analytics_workspace_location
   }
 }
@@ -33,7 +33,7 @@ module "mod_ueba_essentials" {
   count   = var.enable_solution_ueba_essentials ? 1 : 0
 
   name                = "deploy_ueba_essentials_content_solution"
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.resource_group_name
   deployment_mode     = var.deployment_mode
   deploy_environment  = var.deploy_environment
   workload_name       = "solutions"
@@ -41,7 +41,7 @@ module "mod_ueba_essentials" {
   arm_script = file("${path.module}/sentinel/ueba_essentials.json")
 
   parameters_override = {
-    "workspaceName" = var.log_analytics_workspace_name,
+    "workspaceName" = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.workspace_name,
     "location"      = var.log_analytics_workspace_location
   }
 }
@@ -54,7 +54,7 @@ module "mod_attacker_tools_tp_essentials" {
   count   = var.enable_solution_attacker_tools_threat_protection_essentials ? 1 : 0
 
   name                = "deploy_attacker_tools_threat_protection_essentials_content_solution"
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.resource_group_name
   deployment_mode     = var.deployment_mode
   deploy_environment  = var.deploy_environment
   workload_name       = "solutions"
@@ -62,7 +62,7 @@ module "mod_attacker_tools_tp_essentials" {
   arm_script = file("${path.module}/sentinel/attacker_tools_threat_protection_essentials.json")
 
   parameters_override = {
-    "workspaceName" = var.log_analytics_workspace_name,
+    "workspaceName" = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.workspace_name,
     "location"      = var.log_analytics_workspace_location
   }
 }
@@ -75,7 +75,7 @@ module "mod_cloud_identity_tp_essentials" {
   count   = var.enable_solution_cloud_identity_threat_protection_essentials ? 1 : 0
 
   name                = "deploy_cloud_identity_threat_protection_essentials_content_solution"
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.resource_group_name
   deployment_mode     = var.deployment_mode
   deploy_environment  = var.deploy_environment
   workload_name       = "solutions"
@@ -83,7 +83,7 @@ module "mod_cloud_identity_tp_essentials" {
   arm_script = file("${path.module}/sentinel/cloud_identity_threat_protection_essentials.json")
 
   parameters_override = {
-    "workspaceName" = var.log_analytics_workspace_name,
+    "workspaceName" = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.workspace_name,
     "location"      = var.log_analytics_workspace_location
   }
 }
@@ -96,7 +96,7 @@ module "mod_cloud_service_tp_essentials" {
   count   = var.enable_solution_cloud_service_threat_protection_essentials ? 1 : 0
 
   name                = "deploy_cloud_service_threat_protection_essentials_content_solution"
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.resource_group_name
   deployment_mode     = var.deployment_mode
   deploy_environment  = var.deploy_environment
   workload_name       = "solutions"
@@ -104,7 +104,7 @@ module "mod_cloud_service_tp_essentials" {
   arm_script = file("${path.module}/sentinel/cloud_service_threat_protection_essentials.json")
 
   parameters_override = {
-    "workspaceName" = var.log_analytics_workspace_name,
+    "workspaceName" = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.workspace_name,
     "location"      = var.log_analytics_workspace_location
   }
 }
@@ -117,7 +117,7 @@ module "mod_endpoint_tp_essentials" {
   count   = var.enable_solution_endpoint_threat_protection_essentials ? 1 : 0
 
   name                = "deploy_endpoint_threat_protection_essentials_content_solution"
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.resource_group_name
   deployment_mode     = var.deployment_mode
   deploy_environment  = var.deploy_environment
   workload_name       = "solutions"
@@ -125,7 +125,7 @@ module "mod_endpoint_tp_essentials" {
   arm_script = file("${path.module}/sentinel/endpoint_threat_protection_essentials.json")
 
   parameters_override = {
-    "workspaceName" = var.log_analytics_workspace_name,
+    "workspaceName" = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.workspace_name,
     "location"      = var.log_analytics_workspace_location
   }
 }
@@ -138,7 +138,7 @@ module "mod_network_session_essentials" {
   count   = var.enable_solution_network_session_essentials ? 1 : 0
 
   name                = "deploy_network_session_essentials_content_solution"
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.resource_group_name
   deployment_mode     = var.deployment_mode
   deploy_environment  = var.deploy_environment
   workload_name       = "solutions"
@@ -146,7 +146,7 @@ module "mod_network_session_essentials" {
   arm_script = file("${path.module}/sentinel/network_session_essentials.json")
 
   parameters_override = {
-    "workspaceName" = var.log_analytics_workspace_name,
+    "workspaceName" = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.workspace_name,
     "location"      = var.log_analytics_workspace_location
   }
 }
@@ -159,7 +159,7 @@ module "mod_network_tp_essentials" {
   count   = var.enable_solution_network_threat_protection_essentials ? 1 : 0
 
   name                = "deploy_network_threat_protection_essentials_content_solution"
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.resource_group_name
   deployment_mode     = var.deployment_mode
   deploy_environment  = var.deploy_environment
   workload_name       = "solutions"
@@ -167,7 +167,7 @@ module "mod_network_tp_essentials" {
   arm_script = file("${path.module}/sentinel/network_threat_protection_essentials.json")
 
   parameters_override = {
-    "workspaceName" = var.log_analytics_workspace_name,
+    "workspaceName" = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.workspace_name,
     "location"      = var.log_analytics_workspace_location
   }
 }
@@ -180,7 +180,7 @@ module "mod_security_threat_essentials" {
   count   = var.enable_solution_security_threat_essentials ? 1 : 0
 
   name                = "deploy_security_threat_essentials_content_solution"
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.resource_group_name
   deployment_mode     = var.deployment_mode
   deploy_environment  = var.deploy_environment
   workload_name       = "solutions"
@@ -188,7 +188,7 @@ module "mod_security_threat_essentials" {
   arm_script = file("${path.module}/sentinel/security_threat_essentials.json")
 
   parameters_override = {
-    "workspaceName" = var.log_analytics_workspace_name,
+    "workspaceName" = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.workspace_name,
     "location"      = var.log_analytics_workspace_location
   }
 }

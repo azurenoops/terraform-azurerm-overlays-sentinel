@@ -4,22 +4,10 @@ variable "log_analytics_workspace_id" {
   type        = string  
 }
 
-variable "log_analytics_workspace_name" {
-  description = "The name of the Log Analytics Workspace to onboard to Azure Sentinel. This is only used in Hub Content Solutions."
-  type        = string
-  default = null 
-}
-
 variable "log_analytics_workspace_location" {
   description = "The name of the Resource Group in which the Log Analytics Workspace is located. This is only used in Hub Content Solutions."
   type        = string
   default = null 
-}
-
-variable "resource_group_name" {
-  description = "The name of the Resource Group in which the Log Analytics Workspace is located. This is only used in Hub Content Solutions."
-  type        = string
-  default = null  
 }
 
 variable "deploy_environment" {
@@ -37,4 +25,10 @@ variable "deployment_mode" {
     condition     = contains(["Incremental", "Complete"], var.deployment_mode)
     error_message = "This value must be either Incremental or Complete."
   }
+}
+
+variable "existing_principal_id" {
+  description = "The ID of the principal to use for the deployment. If not specified, a new principal will be created."
+  type        = string
+  default     = null
 }
