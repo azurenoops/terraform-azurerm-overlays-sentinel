@@ -10,8 +10,7 @@ module "mod_sentinel_ubea" {
   log_analytics_workspace_id = azurerm_log_analytics_workspace.sentinel_workspace.id
   deploy_environment         = "dev"
 
-  # UBEA
-  enable_ueba           = true
+  # UBEA  
   ueba_data_sources     = var.ueba_data_sources
   ueba_entity_providers = var.ueba_entity_providers
 
