@@ -6,6 +6,7 @@
 ###########################################################
 
 resource "azurerm_sentinel_alert_rule_ms_security_incident" "sentinel_alert_rule_ms_security_incident" {
+  depends_on = [ azurerm_sentinel_log_analytics_workspace_onboarding.sentinel ]
   for_each                   = var.ms_security_incident_alert_rules != null ? var.ms_security_incident_alert_rules : tomap({})
   name                       = format("%s-%s-%s", element(split("/", azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.workspace_id), 8), "SecurityInsights", uuid())
   log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.workspace_id
