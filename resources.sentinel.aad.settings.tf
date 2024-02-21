@@ -2,7 +2,7 @@
 # Licensed under the MIT License.
 
 # Enable Azure Active Directory Diagnostic Settings in Sentinel
-/* resource "azurerm_monitor_aad_diagnostic_setting" "aad_logs" {
+resource "azurerm_monitor_aad_diagnostic_setting" "aad_logs" {
   depends_on = [ azurerm_sentinel_log_analytics_workspace_onboarding.sentinel ]
   count = var.data_connector_aad_enabled ? 1 : 0
 
@@ -16,4 +16,4 @@
       retention_policy {}
     }
   }
-} */
+}
