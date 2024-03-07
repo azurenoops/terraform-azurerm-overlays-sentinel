@@ -4,7 +4,7 @@
 variable "data_connector_aad_enabled" {
   description = "Whether the Azure Active Directory logs are retrieved."
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "data_connector_aad_logs" {

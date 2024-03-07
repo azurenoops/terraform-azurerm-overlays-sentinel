@@ -258,6 +258,12 @@ Defualt Logs included in the Diagnostic Settings are:
 - EnrichedOffice365AuditLogs
 - MicrosoftGraphActivityLogs
 
+> **Note:** This module will not work in a Github action with SPN auth. It will only work with Az CLI auth. If you use this module in a Github action, you will need to use the Az CLI login action to authenticate or it will fail the build. Review the [Azure RM module](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_aad_diagnostic_setting)
+
+> **Possible Workaround:** Review this [link](https://github.com/Azure/azure-rest-api-specs/issues/11085#issuecomment-1363008480) as it discusses a az cli command you can use to provide the proper permissions for the service principal.
+
+```hcl
+
 ## Example Usage
 
 ```hcl  
